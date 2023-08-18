@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActuRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActuRepository::class)]
@@ -25,6 +27,14 @@ class Actu
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modified_at = null;
 
+    #[ORM\OneToMany(mappedBy: 'actu', targetEntity: MediaActu::class, orphanRemoval: true)]
+    private Collection $mediaActus;
+
+    public function __construct()
+    {
+        $this->mediaActus = new ArrayCollection();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -77,4 +87,35 @@ class Actu
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, MediaActu>
+     */
+    public function getMediaActus(): Collection
+    {
+        return $this->mediaActus;
+    }
+
+    public function addMediaActu(MediaActu $mediaActu): static
+    {
+        if (!$this->mediaActus->contains($mediaActu)) {
+            $this->mediaActus->add($mediaActu);
+            $mediaActu->setActu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMediaActu(MediaActu $mediaActu): static
+    {
+        if ($this->mediaActus->removeElement($mediaActu)) {
+            // set the owning side to null (unless already changed)
+            if ($mediaActu->getActu() === $this) {
+                $mediaActu->setActu(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
