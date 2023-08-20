@@ -27,14 +27,14 @@ class Actu
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modified_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'actu', targetEntity: MediaActu::class, orphanRemoval: true)]
-    private Collection $mediaActus;
+    #[ORM\OneToMany(mappedBy: 'actu', targetEntity: Media::class)]
+    private Collection $media;
 
     public function __construct()
     {
-        $this->mediaActus = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,33 +89,33 @@ class Actu
     }
 
     /**
-     * @return Collection<int, MediaActu>
+     * @return Collection<int, Media>
      */
-    public function getMediaActus(): Collection
+    public function getMedia(): Collection
     {
-        return $this->mediaActus;
+        return $this->media;
     }
 
-    public function addMediaActu(MediaActu $mediaActu): static
+    public function addMedium(Media $medium): static
     {
-        if (!$this->mediaActus->contains($mediaActu)) {
-            $this->mediaActus->add($mediaActu);
-            $mediaActu->setActu($this);
+        if (!$this->media->contains($medium)) {
+            $this->media->add($medium);
+            $medium->setActu($this);
         }
 
         return $this;
     }
 
-    public function removeMediaActu(MediaActu $mediaActu): static
+    public function removeMedium(Media $medium): static
     {
-        if ($this->mediaActus->removeElement($mediaActu)) {
+        if ($this->media->removeElement($medium)) {
             // set the owning side to null (unless already changed)
-            if ($mediaActu->getActu() === $this) {
-                $mediaActu->setActu(null);
+            if ($medium->getActu() === $this) {
+                $medium->setActu(null);
             }
         }
 
         return $this;
-    }
+    }    
 
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
@@ -21,6 +23,14 @@ class Project
 
     #[ORM\Column]
     private ?\DateTimeImmutable $date = null;
+
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Media::class)]
+    private Collection $media;
+
+    public function __construct()
+    {
+        $this->media = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -62,4 +72,35 @@ class Project
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Media>
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): static
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media->add($medium);
+            $medium->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): static
+    {
+        if ($this->media->removeElement($medium)) {
+            // set the owning side to null (unless already changed)
+            if ($medium->getProject() === $this) {
+                $medium->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
