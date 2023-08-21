@@ -29,6 +29,11 @@ class Message
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    public function __construct()
+    {
+        $this->sent_at = new \DateTimeImmutable();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
