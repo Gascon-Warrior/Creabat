@@ -23,13 +23,20 @@ class Media
     protected ?string $caption = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Actu $actu = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Supplier $supplier = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Project $project = null;
+
+    #[ORM\ManyToOne(inversedBy: 'image')]
+    private ?Project $test = null;
+   
 
     public function getId(): ?int
     {
@@ -45,7 +52,7 @@ class Media
     public function setPicture(string $picture): static
     {
         $this->picture = $picture;
-
+    
         return $this;
     }
 
@@ -108,4 +115,17 @@ class Media
 
         return $this;
     }
+
+    public function getTest(): ?Project
+    {
+        return $this->test;
+    }
+
+    public function setTest(?Project $test): static
+    {
+        $this->test = $test;
+
+        return $this;
+    }   
+
 }

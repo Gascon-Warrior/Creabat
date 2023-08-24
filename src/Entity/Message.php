@@ -22,11 +22,13 @@ class Message
     #[ORM\Column]
     private ?\DateTimeImmutable $sent_at = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options:['default' => false])]
+    #[ORM\JoinColumn(nullable: true)]
     private ?bool $is_seen = null;
 
     #[ORM\ManyToOne(inversedBy: 'message')]
     #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?User $user = null;
 
     public function __construct()

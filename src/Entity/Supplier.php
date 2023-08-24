@@ -19,6 +19,7 @@ class Supplier
     private ?string $company = null;
 
     #[ORM\OneToMany(mappedBy: 'supplier', targetEntity: Media::class)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $media;
 
     public function __construct()

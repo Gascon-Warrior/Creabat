@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\SlugTrait;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
 {
+    use SlugTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,15 +24,21 @@ class Project
     #[ORM\Column(length: 15000)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options:['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Media::class)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $media;
+
+    #[ORM\OneToMany(mappedBy: 'test', targetEntity: Media::class)]
+    private Collection $image; 
 
     public function __construct()
     {
         $this->media = new ArrayCollection();
+        $this->image = new ArrayCollection();  
+        $this->date = new \DateTimeImmutable();      
     }
 
     public function getId(): ?int
@@ -103,4 +112,34 @@ class Project
         return $this;
     }
 
+    /**
+     * @return Collection<int, Media>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Media $image): static
+    {
+        if (!$this->image->contains($image)) {
+            $this->image->add($image);
+            $image->setTest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Media $image): static
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getTest() === $this) {
+                $image->setTest(null);
+            }
+        }
+
+        return $this;
+    }  
+ 
 }
