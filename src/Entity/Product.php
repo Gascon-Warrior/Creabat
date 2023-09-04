@@ -21,7 +21,7 @@ class Product
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Media::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Media::class, cascade:['persist'])]
     private Collection $media;
 
     #[ORM\ManyToOne(inversedBy: 'products')]

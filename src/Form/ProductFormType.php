@@ -3,9 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use App\Entity\Media;
 use App\Entity\Product;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,6 +27,15 @@ class ProductFormType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Catégorie'
             ])
+            ->add('media', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('alt', TextType::class, options: [
+                'label' => 'Texte alternatif'
+            ])        
         ;
     }
 

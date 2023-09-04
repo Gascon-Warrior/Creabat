@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Media;
 use App\Entity\Product;
 use App\Form\ProductFormType;
+use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +25,8 @@ class AdminProductController extends AbstractController
     }
 
     #[Route('/ajout', name: 'add')]
-    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
-    {   
+    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
+    {
         // On crée un nouveau produit
         $product = new Product();
 
@@ -34,13 +36,28 @@ class AdminProductController extends AbstractController
         //On traite la requete du formulaire
         $productForm->handleRequest($request);
 
-       
+
         //On verifie si le formulaire est soumis et valide
-        if($productForm->isSubmitted() && $productForm->isValid()){
+        if ($productForm->isSubmitted() && $productForm->isValid()) {
+
+            //On récupere les images
+            $images = $productForm->get('media')->getData();
+            foreach ($images as $image) {
+                //ON défini le dossier de destination 
+                $folder = 'products';
+
+                //On appelle le service d'ajout
+                $fichier = $pictureService->add($image, $folder, 300, 300);
+
+                $img  = new Media();
+                $img->setPicture($fichier);
+
+                $product->addMedium($img);
+            }
             //On génere le slug
-            $slug = strtolower($slugger->slug($product->getName()));           
-            $product->setSlug($slug);   
-            
+            $slug = strtolower($slugger->slug($product->getName()));
+            $product->setSlug($slug);
+
             //On stocke 
             $em->persist($product);
             $em->flush();
@@ -56,42 +73,38 @@ class AdminProductController extends AbstractController
         return $this->render('admin/product/add.html.twig', [
             'productForm' => $productForm->createView()
         ]);
-       
     }
 
     #[Route('/edition/{id}', name: 'edit')]
     public function edit(Product $product, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
 
-                //On crée le formulaire
-                $productForm = $this->createForm(ProductFormType::class, $product);
+        //On crée le formulaire
+        $productForm = $this->createForm(ProductFormType::class, $product);
 
-                //On traite la requete du formulaire
-                $productForm->handleRequest($request);
-        
-               
-                //On verifie si le formulaire est soumis et valide
-                if($productForm->isSubmitted() && $productForm->isValid()){
-                    //On génere le slug
-                    $slug = strtolower($slugger->slug($product->getName()));           
-                    $product->setSlug($slug);   
-                    
-                    //On stocke 
-                    $em->persist($product);
-                    $em->flush();
-        
-                    //Ajout d'un message flash
-                    //$this->addFlash('succes', 'produit modifié avec succès');
-        
-                    //On redirige
-                    return $this->redirectToRoute('admin_product_index');
-                }
-        
-                //syntaxe classique pour le render
-                return $this->render('admin/product/edit.html.twig', [
-                    'productForm' => $productForm->createView()
-                ]);
-               
-        
+        //On traite la requete du formulaire
+        $productForm->handleRequest($request);
+
+        //On verifie si le formulaire est soumis et valide
+        if ($productForm->isSubmitted() && $productForm->isValid()) {
+            //On génere le slug
+            $slug = strtolower($slugger->slug($product->getName()));
+            $product->setSlug($slug);
+
+            //On stocke 
+            $em->persist($product);
+            $em->flush();
+
+            //Ajout d'un message flash
+            //$this->addFlash('succes', 'produit modifié avec succès');
+
+            //On redirige
+            return $this->redirectToRoute('admin_product_index');
+        }
+
+        //syntaxe classique pour le render
+        return $this->render('admin/product/edit.html.twig', [
+            'productForm' => $productForm->createView()
+        ]);
     }
 }
