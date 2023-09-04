@@ -22,20 +22,16 @@ class Media
     #[ORM\Column(length: 500, nullable: true)]
     protected ?string $caption = null;
 
-    #[ORM\ManyToOne(inversedBy: 'media')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?Actu $actu = null;
-
-    #[ORM\ManyToOne(inversedBy: 'media')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?Supplier $supplier = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Project $project = null;
 
-    #[ORM\ManyToOne(inversedBy: 'image')]
-    private ?Project $test = null;
+    #[ORM\OneToOne(mappedBy: 'media', cascade: ['persist', 'remove'])]
+    private ?Category $category = null;
+
+    #[ORM\ManyToOne(inversedBy: 'media')]
+    private ?Product $product = null;
    
 
     public function getId(): ?int
@@ -79,31 +75,7 @@ class Media
 
         return $this;
     }
-
-    public function getActu(): ?Actu
-    {
-        return $this->actu;
-    }
-
-    public function setActu(?Actu $actu): static
-    {
-        $this->actu = $actu;
-
-        return $this;
-    }
-
-    public function getSupplier(): ?Supplier
-    {
-        return $this->supplier;
-    }
-
-    public function setSupplier(?Supplier $supplier): static
-    {
-        $this->supplier = $supplier;
-
-        return $this;
-    }
-
+  
     public function getProject(): ?Project
     {
         return $this->project;
@@ -116,14 +88,36 @@ class Media
         return $this;
     }
 
-    public function getTest(): ?Project
+    public function getCategory(): ?Category
     {
-        return $this->test;
+        return $this->category;
     }
 
-    public function setTest(?Project $test): static
+    public function setCategory(?Category $category): static
     {
-        $this->test = $test;
+        // unset the owning side of the relation if necessary
+        if ($category === null && $this->category !== null) {
+            $this->category->setMedia(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($category !== null && $category->getMedia() !== $this) {
+            $category->setMedia($this);
+        }
+
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): static
+    {
+        $this->product = $product;
 
         return $this;
     }   

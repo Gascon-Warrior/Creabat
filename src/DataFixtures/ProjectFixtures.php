@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 use Faker;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class ProjectFixtures extends Fixture 
+class ProjectFixtures extends Fixture
 {
     public function __construct(      
         private SluggerInterface $slugger,

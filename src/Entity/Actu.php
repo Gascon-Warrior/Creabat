@@ -30,21 +30,14 @@ class Actu
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modified_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'actu', targetEntity: Media::class)]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private Collection $media;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false, onDelete:'CASCADE')]
+    private ?Media $media = null;
 
     public function __construct()
-    {
-        $this->media = new ArrayCollection();
+    {       
         $this->created_at = new \DateTimeImmutable();
     }
-
-    /*public function __toString(): string
-    {
-        return $this->city.' '.$this->year;
-    }
-    */
 
     public function getId(): ?int
     {
@@ -99,34 +92,16 @@ class Actu
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getMedia(): Collection
+    public function getMedia(): ?Media
     {
         return $this->media;
     }
 
-    public function addMedium(Media $medium): static
+    public function setMedia(Media $media): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
-            $medium->setActu($this);
-        }
+        $this->media = $media;
 
         return $this;
-    }
-
-    public function removeMedium(Media $medium): static
-    {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getActu() === $this) {
-                $medium->setActu(null);
-            }
-        }
-
-        return $this;
-    }    
+    }   
 
 }

@@ -1,0 +1,37 @@
+<header>
+    <nav class="navBar">
+        <div class="logoContainer">
+            <a href="#">
+                <img src="upload/images/logos/logoCreabat.png" class="logo" alt="Logo de l'entreprise Créabat Menuiseries">
+            </a>
+        </div>
+        <div class="containerNavBtn"> 
+            <ul class="navItems">
+                <li class="crumb dropdown">
+                    <a href="{{ path('product_all') }}">Produits</a>               
+                </li>
+                <div class="dropdownMenu">
+                    <ul>
+                        {% for category in cat.getCategories %}
+                            <li>        
+                                {{ category.name }}       
+                            </li>
+                        {% endfor %} 
+                    </ul>
+                </div>
+                <li>
+                    <a href="{{ path('actu_all') }}">Actualités</a>
+                </li>
+                <li class="crumb">
+                    <a href="{{ path('project_all') }}">Réalisations</a>
+                </li>
+                <li class="crumb">
+                    <a href="#">Equipe</a>
+                </li>
+                <li class="crumb">
+                    <a href="#">Contacts</a>
+                </li>
+            </ul>
+        </div>    
+    </nav>
+</header>

@@ -21,6 +21,14 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
+    public function findProjetcsPaginated(int  $page, string $slug, int $limit = 6): array
+    {   
+        $limit = abs($limit);
+
+        $result = [];
+
+        return $result;
+    }
 //    /**
 //     * @return Project[] Returns an array of Project objects
 //     */

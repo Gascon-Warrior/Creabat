@@ -1,0 +1,93 @@
+/*Fonts***************************************************************/
+@font-face {
+    font-family: 'Roboto';
+    src: url(/assets/fonts/Roboto-Regular.ttf);
+}
+/*Fonts***************************************************************/
+
+/*Reset CCS *********************************************************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+/*Fin Reset CCS *********************************************************/
+a{
+    text-decoration: none;
+    color: white;
+}
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: bisque;
+    align-items: center;
+    font-family: 'Roboto','Courier New', Courier, monospace;
+    font-size: 19px;
+}
+.logo{
+    width: 35%;
+}
+.containerNavBtn{
+    
+    background-color: blueviolet;
+    width: 50%;
+}
+.navItems{
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+    height: 100%;
+    
+}
+.dropdownMenu{
+    position: absolute;
+    margin-top: 20px;
+    flex-direction: column;
+    background-color: blue;
+}
+.dropdownMenu li{
+    padding: 10px 20px;
+}

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Actu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,20 +22,31 @@ class ActuRepository extends ServiceEntityRepository
         parent::__construct($registry, Actu::class);
     }
 
-//    /**
-//     * @return Actu[] Returns an array of Actu objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /*/**
+    * @return Actu[] Returns an array of Actu objects
+    */
+   /*public function findByDate($value): array
+   {
+       return $this->createQueryBuilder('a')
+           ->andWhere('a.exampleField = :val')
+          ->setParameter('val', $value)
+           ->orderBy('a.created_at', 'ASC')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+    */
+
+   public function findLastActu($limit = 3)
+   {       
+
+    return $this->createQueryBuilder('a')
+            ->orderBy('a.created_at', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+   }
 
 //    public function findOneBySomeField($value): ?Actu
 //    {

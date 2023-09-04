@@ -18,15 +18,10 @@ class Supplier
     #[ORM\Column(length: 100)]
     private ?string $company = null;
 
-    #[ORM\OneToMany(mappedBy: 'supplier', targetEntity: Media::class)]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private Collection $media;
-
-    public function __construct()
-    {
-        $this->media = new ArrayCollection();
-    }
-
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Media $media = null;
+ 
     public function getId(): ?int
     {
         return $this->id;
@@ -44,35 +39,16 @@ class Supplier
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getMedia(): Collection
+    public function getMedia(): ?Media
     {
         return $this->media;
     }
 
-    public function addMedium(Media $medium): static
+    public function setMedia(Media $media): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
-            $medium->setSupplier($this);
-        }
+        $this->media = $media;
 
         return $this;
     }
-
-    public function removeMedium(Media $medium): static
-    {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getSupplier() === $this) {
-                $medium->setSupplier(null);
-            }
-        }
-
-        return $this;
-    }
-
-
+       
 }

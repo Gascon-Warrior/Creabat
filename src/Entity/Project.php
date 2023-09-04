@@ -31,13 +31,9 @@ class Project
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $media;
 
-    #[ORM\OneToMany(mappedBy: 'test', targetEntity: Media::class)]
-    private Collection $image; 
-
     public function __construct()
     {
-        $this->media = new ArrayCollection();
-        $this->image = new ArrayCollection();  
+        $this->media = new ArrayCollection();     
         $this->date = new \DateTimeImmutable();      
     }
 
@@ -106,36 +102,6 @@ class Project
             // set the owning side to null (unless already changed)
             if ($medium->getProject() === $this) {
                 $medium->setProject(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getImage(): Collection
-    {
-        return $this->image;
-    }
-
-    public function addImage(Media $image): static
-    {
-        if (!$this->image->contains($image)) {
-            $this->image->add($image);
-            $image->setTest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Media $image): static
-    {
-        if ($this->image->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getTest() === $this) {
-                $image->setTest(null);
             }
         }
 

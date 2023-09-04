@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/realisations', name: 'project_')]
 class ProjectController extends AbstractController
 {
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'all')]
     public function index(): Response
     {
         return $this->render('project/index.html.twig', [
