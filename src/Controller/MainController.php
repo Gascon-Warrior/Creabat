@@ -12,7 +12,8 @@ class MainController extends AbstractController
     
     #[Route('/', name: 'app_main')]
     public function index(ActuRepository $actuRepository): Response
-    {
+    {   
+        //Reender les trois dernières actualités sur la pag d'accueil 
         $actu = $actuRepository->findLastActu();
         return $this->render('main/index.html.twig', compact('actu'));
     }

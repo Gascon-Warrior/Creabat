@@ -38,6 +38,7 @@ class ActuRepository extends ServiceEntityRepository
    }
     */
 
+    //Retourne les trois dernières actualités
    public function findLastActu($limit = 3)
    {       
 
