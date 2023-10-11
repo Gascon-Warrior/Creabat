@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Category
 {
     use SlugTrait;
-    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -89,5 +89,27 @@ class Category
         }
 
         return $this;
+    }
+
+    public function getMediaAlt()
+    {
+        return $this->media ? $this->media->getAlt(): null;
+    }
+
+    public function getMediaCaption()
+    {
+        return $this->media ? $this->media->getCaption(): null;
+    }
+    public function getMediaPicture()
+    {
+        return $this->media ? $this->media->getPicture(): null;
+    }
+
+
+    // Dans la classe App\Entity\Product
+
+    public function __toString()
+    {
+        return $this->getName(); // Vous devriez remplacer getName() par la méthode qui retourne le nom du produit
     }
 }

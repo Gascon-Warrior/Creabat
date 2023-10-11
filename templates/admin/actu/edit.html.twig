@@ -1,0 +1,15 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}
+	Modifier une actualité
+{% endblock %}
+{% block dashboardcontent %}
+	<div class="container max-w-7xl mx-auto">
+		<h1>Modifier une actualité</h1>
+		{% include 'admin/actu/_form.html.twig' with {'button_label': 'Modifier'} %}
+	<div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('assets/js/images.js') }}" defer></script>
+{% endblock %}

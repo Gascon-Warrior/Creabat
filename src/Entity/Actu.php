@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\Entity\Trait\SlugTrait;
 use App\Repository\ActuRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActuRepository::class)]
@@ -103,5 +101,19 @@ class Actu
 
         return $this;
     }   
+
+    public function getMediaAlt()
+    {
+        return $this->media ? $this->media->getAlt(): null;
+    }
+
+    public function getMediaCaption()
+    {
+        return $this->media ? $this->media->getCaption(): null;
+    }
+    public function getMediaPicture()
+    {
+        return $this->media ? $this->media->getPicture(): null;
+    }
 
 }

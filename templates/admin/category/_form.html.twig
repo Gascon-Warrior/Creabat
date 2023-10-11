@@ -1,0 +1,17 @@
+{{ form_start(categoryForm) }}
+{{ form_row(categoryForm.name) }}
+{{ form_row(categoryForm.media_picture) }}
+{{ form_row(categoryForm.media_alt) }}
+{{ form_row(categoryForm.media_caption) }}
+
+{% if app.request.attributes.get('_route') == 'admin_category_edit' %}
+	<h2>Images</h2>
+	<div>
+		<img src="{{ asset('assets/uploads/categories/mini/300x300-' ~ category.media.picture)}}" alt="{{ category.media.alt }}" width="150">
+		{#<a href="{{ path('admin_category_delete_image', { id: category.media.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ category.media.id) }}">Supprimer</a>#}
+	</div>
+{% endif %}
+
+<button type='submit'>{{button_label|default('Ajouter')}}</button>
+
+{{ form_end(categoryForm) }}

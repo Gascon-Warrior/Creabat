@@ -17,10 +17,10 @@ class Media
     protected ?string $picture = null;
 
     #[ORM\Column(length: 500)]
-    protected ?string $alt = null;
+    public ?string $alt = null;
 
     #[ORM\Column(length: 500, nullable: true)]
-    protected ?string $caption = null;
+    public ?string $caption = null;
 
 
     #[ORM\ManyToOne(inversedBy: 'media')]
@@ -120,6 +120,6 @@ class Media
         $this->product = $product;
 
         return $this;
-    }   
-
+    } 
+  
 }

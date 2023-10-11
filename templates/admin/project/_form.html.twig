@@ -1,0 +1,19 @@
+{{ form_start(projectForm) }}
+    {{ form_row(projectForm.title) }}
+    {{ form_row(projectForm.description) }}
+    {#Si on est en edition, on affiche les images#}
+    {% if app.request.attributes.get('_route') == 'admin_project_edit' %}
+        <h2>Images</h2>
+        {% for image in project.media %}
+            <div>
+                <img src="{{ asset('assets/uploads/projets/mini/300x300-' ~ image.picture)}}" alt="{{ image.alt }}" width="150" >
+                <a href="{{ path('admin_product_delete_image', { id: image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+            </div>
+            
+        {% endfor %}
+    {% endif %}
+    {{ form_row(projectForm.photo) }}
+
+<button type='submit'>{{button_label|default('Ajouter')}}</button>
+
+{{ form_end(projectForm) }}

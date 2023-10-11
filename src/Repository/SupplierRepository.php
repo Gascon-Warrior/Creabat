@@ -21,6 +21,15 @@ class SupplierRepository extends ServiceEntityRepository
         parent::__construct($registry, Supplier::class);
     }
 
+    public function findAllSuppliersWithImages()
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s', 'm') // Sélectionnez le fournisseur (s) et la photo (m)
+            ->leftJoin('s.media', 'm')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Supplier[] Returns an array of Supplier objects
 //     */

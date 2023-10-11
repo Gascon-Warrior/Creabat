@@ -50,5 +50,19 @@ class Supplier
 
         return $this;
     }
+
+    public function getMediaAlt()
+    {
+        return $this->media ? $this->media->getAlt(): null;
+    }
+
+    public function getMediaCaption()
+    {
+        return $this->media ? $this->media->getCaption(): null;
+    }
+    public function getMediaPicture()
+    {
+        return $this->media ? $this->media->getPicture(): null;
+    }
        
 }

@@ -1,0 +1,17 @@
+{{ form_start(supplierForm) }}
+{{ form_row(supplierForm.company) }}
+{{ form_row(supplierForm.media_picture) }}
+{{ form_row(supplierForm.media_alt) }}
+{{ form_row(supplierForm.media_caption) }}
+
+{% if app.request.attributes.get('_route') == 'admin_supplier_edit' %}
+	<h2>Images</h2>
+	<div>
+		<img src="{{ asset('assets/uploads/suppliers/mini/300x300-' ~ supplier.media.picture)}}" alt="{{ supplier.media.alt }}" width="150">
+		{#<a href="{{ path('admin_supplier_delete_image', { id: supplier.media.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ supplier.media.id) }}">Supprimer</a>#}
+	</div>
+{% endif %}
+
+<button type='submit'>{{button_label|default('Ajouter')}}</button>
+
+{{ form_end(supplierForm) }}

@@ -15,6 +15,12 @@ class MainController extends AbstractController
     {   
         //Reender les trois dernières actualités sur la pag d'accueil 
         $actu = $actuRepository->findLastActu();
-        return $this->render('main/index.html.twig', compact('actu'));
+        $lastActus = $actuRepository->findLastActu();       
+
+        return $this->render('main/index.html.twig', [
+            'actu' => $actu,
+            'lastActus' => $lastActus
+        ]);
     }
+
 }

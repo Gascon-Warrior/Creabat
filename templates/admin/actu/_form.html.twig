@@ -1,0 +1,18 @@
+{{ form_start(actuForm) }}
+{{ form_row(actuForm.title) }}
+{{ form_row(actuForm.content) }}
+{{ form_row(actuForm.media_picture) }}
+{{ form_row(actuForm.media_alt) }}
+{{ form_row(actuForm.media_caption) }}
+
+{% if app.request.attributes.get('_route') == 'admin_actus_edit' %}
+	<h2>Images</h2>
+	<div>
+		<img src="{{ asset('assets/uploads/actus/mini/300x300-' ~ actu.media.picture)}}" alt="{{ actu.media.alt }}" width="150">
+		<a href="{{ path('admin_actus_delete_image', { id: actu.media.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ actu.media.id) }}">Supprimer</a>
+	</div>
+{% endif %}
+
+<button type='submit'>{{button_label|default('Ajouter')}}</button>
+
+{{ form_end(actuForm) }}

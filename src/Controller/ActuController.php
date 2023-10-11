@@ -25,5 +25,5 @@ class ActuController extends AbstractController
         //On va chercher l'image correspondante via la medthode getMedia
         $image = $actu->getMedia();
         return $this->render('actu/single.html.twig', compact('actu', 'image'));
-    }
+    } 
 }

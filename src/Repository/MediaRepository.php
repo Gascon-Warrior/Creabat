@@ -21,6 +21,18 @@ class MediaRepository extends ServiceEntityRepository
         parent::__construct($registry, Media::class);
     }
 
+    
+    public function findImageById($id): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('m')
+            ->innerJoin('App\Entity\Actu', 'a', 'WITH', 'a.media = m.id')
+            ->where('m.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+ 
 //    /**
 //     * @return Media[] Returns an array of Media objects
 //     */

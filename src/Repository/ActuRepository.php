@@ -22,10 +22,32 @@ class ActuRepository extends ServiceEntityRepository
         parent::__construct($registry, Actu::class);
     }
 
-   /*/**
+    public function findAllActusWithImages()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a', 'm') // Sélectionnez l'actualité (c) et la photo (m)
+            ->leftJoin('a.media', 'm')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findLastActus()
+    {
+        return $this->createQueryBuilder('a')
+        ->select('a', 'm') // Sélectionnez l'actualité (a) et la photo (m)
+        ->leftJoin('a.media', 'm')
+        ->orderBy('a.createdAt', 'DESC') // Tri par la propriété createdAt en ordre descendant
+        ->setMaxResults(3)
+        ->getQuery()
+        ->getResult();
+    }
+
+
+    
+    /*/**
     * @return Actu[] Returns an array of Actu objects
     */
-   /*public function findByDate($value): array
+    /*public function findByDate($value): array
    {
        return $this->createQueryBuilder('a')
            ->andWhere('a.exampleField = :val')
@@ -39,23 +61,26 @@ class ActuRepository extends ServiceEntityRepository
     */
 
     //Retourne les trois dernières actualités
-   public function findLastActu($limit = 3)
-   {       
-
-    return $this->createQueryBuilder('a')
+    public function findLastActu($limit = 3)
+    {
+        return $this->createQueryBuilder('a')
             ->orderBy('a.created_at', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
-   }
+    }
 
-//    public function findOneBySomeField($value): ?Actu
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+
+
+
+    //    public function findOneBySomeField($value): ?Actu
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

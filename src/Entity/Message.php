@@ -26,7 +26,8 @@ class Message
     #[ORM\JoinColumn(nullable: true)]
     private ?bool $is_seen = null;
 
-    #[ORM\ManyToOne(inversedBy: 'message')]
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     #[ORM\JoinColumn(nullable: false)]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?User $user = null;
@@ -89,12 +90,12 @@ class Message
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 

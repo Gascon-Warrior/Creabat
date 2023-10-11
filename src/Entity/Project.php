@@ -27,7 +27,7 @@ class Project
     #[ORM\Column(options:['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $date = null;
 
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Media::class)]
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Media::class, cascade:['persist'])]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $media;
 

@@ -1,10 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin-base.html.twig' %}
 
 {% block title %}
-    Modifier un produit
+	Modifier un produit
 {% endblock %}
 
-{% block body %}
-    <h1>Modifier un produit</h1>
-    {% include 'admin/product/_form.html.twig' with {'button_label': 'Modifier'} %}
+{% block dashboardcontent %}
+	<div class="container max-w-7xl  mx-auto">
+		<h1 class="text-2xl font-semibold">Modifier un produit</h1>
+		{% include 'admin/product/_form.html.twig' with {'button_label': 'Modifier'} %}
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('assets/js/images.js') }}" defer></script>
 {% endblock %}

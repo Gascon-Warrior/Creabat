@@ -21,6 +21,15 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
+    public function findAllprojectsWithImages()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p', 'm') // Sélectionnez la catégorie (c) et la photo (m)
+            ->leftJoin('p.media', 'm')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findProjetcsPaginated(int  $page, string $slug, int $limit = 6): array
     {   
         $limit = abs($limit);

@@ -1,0 +1,70 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Liste des fournisseurs
+{% endblock %}
+
+{% block dashboardcontent %}
+
+	<div class="container max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="sm:flex sm:items-center">
+			<div class="sm:flex-auto">
+				<h1 class="text-base font-semibold leading-6 text-gray-900">Liste des fournisseurs</h1>
+				<p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title, email and role.</p>
+			</div>
+			<div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+				<a href="{{ path('admin_supplier_add') }}">
+					<button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ajouter un Fournisseur</button>
+				</a>
+			</div>
+		</div>
+		<div class="mt-8 flow-root">
+			<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+				<div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+					<div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+						<table class="min-w-full divide-y divide-gray-300">
+							<thead class="bg-gray-50">
+								<tr>
+									<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Nom</th>
+									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Photo</th>
+									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Actions</th>
+
+									<th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+										<span class="sr-only">Edit</span>
+									</th>
+								</tr>
+
+							</thead>
+							<tbody class="divide-y divide-gray-200 bg-white">
+								{% for supplier in suppliers %}
+									<tr>
+										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{supplier.company}}</td>										
+										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+											{% if supplier.getMediaPicture() is not null %}
+												<img src="{{ asset('assets/uploads/suppliers/mini/300x300-' ~ supplier.getMediaPicture()) }}" alt="{{ supplier.getMediaAlt() }}" width="150">
+											{% else %}
+												<p>Aucune image associée à ce fournisseur.</p>
+											{% endif %}
+										</td>										
+										<td class="relative whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+											<a href="{{ path('admin_supplier_delete', { id: supplier.id }) }}" type="button" class="rounded bg-red-500 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Supprimer<span class="sr-only">, Lindsay Walton</span>
+											</a>
+										</td>
+										<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+											<a href="{{ path('admin_supplier_edit', { id: supplier.id }) }}" class="rounded bg-orange-500 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Modifier<span class="sr-only">, Lindsay Walton</span>
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+
+								<!-- More people... -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}

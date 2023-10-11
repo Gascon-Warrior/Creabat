@@ -7,6 +7,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -19,9 +20,10 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Le nom du produit doit être rempli.')]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Media::class, cascade:['persist'])]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Media::class, cascade:['persist', 'remove'])]
     private Collection $media;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
