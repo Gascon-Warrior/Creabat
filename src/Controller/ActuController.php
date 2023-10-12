@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Actu;
 use App\Repository\ActuRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,10 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActuController extends AbstractController
 {
     #[Route('/', name: 'all')]
-    public function list(Actu $actu, ActuRepository $actuRepository): Response
-    {   
-        $actu = $actuRepository->findAll();
-        return $this->render('actu/list.html.twig', compact('actu'));        
+    public function list(Actu $actu, ActuRepository $actuRepository, Request $request): Response
+    {     
+        //Je vais chercher le numéro de page dans l'url 
+        $page = $request->query->getInt('page', 1);
+        
+        $actus = $actuRepository->findActusPaginated($page, 3);        
+        return $this->render('actu/list.html.twig', compact('actus'));        
     }
 
 

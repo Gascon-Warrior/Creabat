@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 class Message
@@ -14,9 +16,13 @@ class Message
     private ?int $id = null;
 
     #[ORM\Column(length: 200)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:3 , max: 200)]
     private ?string $subject = null;
 
     #[ORM\Column(length: 3000)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 20, max: 3000)]
     private ?string $content = null;
 
     #[ORM\Column]
@@ -28,13 +34,32 @@ class Message
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?User $user = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Assert\Length(min: 2, max: 100)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 100)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 280)]
+    #[Assert\NotBlank()]
+    #[Assert\Email()]
+    #[Assert\Length(min: 2, max: 280)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $phone = null;
 
     public function __construct()
     {
         $this->sent_at = new \DateTimeImmutable();
+        $this->is_seen = false;
     }
     
     public function getId(): ?int
@@ -98,6 +123,54 @@ class Message
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }

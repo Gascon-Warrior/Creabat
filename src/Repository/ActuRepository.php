@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Actu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -27,6 +28,7 @@ class ActuRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->select('a', 'm') // Sélectionnez l'actualité (c) et la photo (m)
             ->leftJoin('a.media', 'm')
+            ->orderBy('a.created_at', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -42,7 +44,37 @@ class ActuRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function findActusPaginated(int $page, string $slug, int $limit = 4): array
+    {
+        $limit = abs($limit);
 
+        $result = [];
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('a', 'm')
+            ->from('App\Entity\Actu', 'a')
+            ->join('a.media', 'm')
+            ->orderBy('a.created_at', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
+           
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
+            
+        
+        if(empty($data)){
+            return $result; 
+        }
+        // On calcule le nombre de pages
+        $pages = ceil($paginator->count() / $limit);
+
+        //On remplit le tableau
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page; 
+        $result['limit'] = $limit; 
+        
+        return $result;
+    }
     
     /*/**
     * @return Actu[] Returns an array of Actu objects

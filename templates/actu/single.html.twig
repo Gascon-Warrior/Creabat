@@ -3,18 +3,12 @@
 {% block title %}{{actu.title}}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>{{actu.title}}</h1>
-
-    <p>{{actu.content}}</p>
-    <p>{{image.picture}}</p>
-    <p>{{image.alt}}</p>    
-    <p>{{image.caption}}</p>  
-
-</div>
+    <div class="mx-auto w-9/12 flex py-14 sm:py-32 px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col mx-auto">
+            <h1>{{actu.title}}</h1>
+            <img src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" alt="{{ actu.getMediaAlt}}"/>           
+            <figcaption class="text-xs font-thin text-gray-400">{{image.caption}}</figcaption>
+            <p>{{actu.content}}</p>
+        </div>
+    </div>
 {% endblock %}
