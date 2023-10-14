@@ -32,11 +32,11 @@ class Message
     #[ORM\JoinColumn(nullable: true)]
     private ?bool $is_seen = null;
 
-    #[ORM\ManyToOne(inversedBy: 'messages')]
+   /* #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     #[ORM\JoinColumn(nullable: true)]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?User $user = null;
+    private ?User $user = null;*/
 
     #[ORM\Column(length: 100, nullable: true)]
     #[Assert\Length(min: 2, max: 100)]
@@ -115,7 +115,7 @@ class Message
         return $this;
     }
 
-    public function getUser(): ?User
+   /* public function getUser(): ?User
     {
         return $this->user;
     }
@@ -125,7 +125,7 @@ class Message
         $this->user = $user;
 
         return $this;
-    }
+    }*/
 
     public function getFirstname(): ?string
     {

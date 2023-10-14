@@ -43,13 +43,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $phone = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class)]  
+   /* #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class)]  
     private Collection $messages;
 
     public function __construct()
     {
         $this->messages = new ArrayCollection();    
-    }
+    }*/
 
     public function getId(): ?int
     {
@@ -157,10 +157,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
+   /*/**
      * @return Collection<int, Message>
      */
-    public function getMessages(): Collection
+    /*public function getMessages(): Collection
     {
         return $this->messages;
     }
@@ -185,5 +185,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
-    }
+    }*/
 }

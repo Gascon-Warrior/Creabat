@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+</head>
+<!--<header>
+    <div class="container bg-black">
+        <img src="{{asset('assets/img/logos/logo-creabat.png')}}" alt="Logo de l'entreprise Créabat Menuiseries">
+    </div>
+</header>-->
+<body>
+    <h1>Demande de  {{ message.firstname ~ message.lastname }}</h1>
+
+    <p>Email: {{ message.email}}</p>
+    <p>Sujet: {{ message.subject}}</p>
+    <p>Message:</p>    
+    <div>{{ message.content|raw}}</div>
+</body>
+</html>

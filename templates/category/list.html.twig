@@ -1,8 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(actu) }}
-    {#{% for product in products %}
-        {{product.name}}
-    {% endfor %}#}
-{% endblock %} 
+
+
+
+
+
+	<div class="container mx-auto">
+		{% for category in products %}
+			<h1>
+				{{ category.name }}</h1>
+			{% for product in category.products %}
+				<h2>
+					{{ product.name }}</h2>
+				<p>{{ product.description }}</p>
+				<P>
+					{% for media in product.media %}
+						<div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
+							<img src="{{ asset('assets/uploads/products/' ~ media.picture()) }}" alt="{{ media.alt}}" class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
+						</div>
+					{% endfor %}
+				{% endfor %}
+			{% endfor %}
+		</div>
+	{% endblock %}

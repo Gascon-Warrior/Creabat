@@ -30,6 +30,18 @@ class CategoryRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllProductsAssociatedWithImages($slug)
+    {
+        return $this->createQuerybuilder('c')
+            ->select('c', 'p', 'm')
+            ->join('c.products', 'p')
+            ->join('p.media', 'm')
+            ->where('c.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Category[] Returns an array of Category objects
     //     */
