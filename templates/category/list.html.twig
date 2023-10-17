@@ -1,26 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-
-
-
-
-	<div class="container mx-auto">
-		{% for category in products %}
-			<h1>
-				{{ category.name }}</h1>
-			{% for product in category.products %}
-				<h2>
-					{{ product.name }}</h2>
-				<p>{{ product.description }}</p>
-				<P>
-					{% for media in product.media %}
-						<div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-							<img src="{{ asset('assets/uploads/products/' ~ media.picture()) }}" alt="{{ media.alt}}" class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
+	<div class="w-9/12 mx-auto py-14 sm:py-32 px-4 sm:px-6 lg:px-8">
+		<div class="">
+			{% for category in products %}
+				<h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{category.name}}</h1>
+				{% for  product in category.products %}
+					<div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20 flex {% if product.id is even %} flex-col md:flex-row {% else %} md:flex-row-reverse{% endif %}">
+						<div class="md:w-1/2 px-4">
+							<h2 class="text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">{{product.name}}</h2>
+							<p class="mt-5 text-sm leading-6 text-gray-600">{{ product.description }}</p>
 						</div>
+						{% for media in product.media %}
+						<div class="md:w-1/2 mt-0" style="margin-top: 0;">
+						<img src="{{ asset('assets/uploads/products/' ~ media.picture()) }}" alt="Image du produit" class="h-auto max-w-full rounded-lg shadow-lg">
+						</div>
+					</div>
 					{% endfor %}
 				{% endfor %}
 			{% endfor %}
+
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}

@@ -23,7 +23,8 @@ class CategoryController extends AbstractController
 
     #[Route('/{slug}', name:'list')]
     public function list(Category $category, CategoryRepository $categoryRepository, $slug): Response
-    {   // On va chercher la liste des tous les produits de la categorie
+    {   
+        // On va chercher la liste des tous les produits de la categorie
         $products = $categoryRepository->findAllProductsAssociatedWithImages($slug);
         
         return $this->render('category/list.html.twig', compact('category', 'products'));

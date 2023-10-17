@@ -5,7 +5,7 @@
 
 {% block dashboardcontent %}
 
-	<div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+	<div class="container max-w-full mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="sm:flex sm:items-center">
 			<div class="sm:flex-auto">
 				<h1 class="text-base font-semibold leading-6 text-gray-900">Tous les projets</h1>
@@ -25,8 +25,7 @@
 							<thead class="bg-gray-50">
 								<tr>
 									<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Nom</th>
-									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
-									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Slug</th>
+									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>									
 									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Photo(s)</th>
 									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Actions</th>
 
@@ -39,9 +38,8 @@
 							<tbody class="divide-y divide-gray-200 bg-white">
 								{% for project in projects %}
 									<tr>
-										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{project.title}}</td>
-										<td class="px-3 py-4 text-sm text-gray-900 text-ellipsis max-w-prose">{{project.description}}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{{project.slug}}</td>
+										<td class="whitespace-normal py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{project.title}}</td>
+										<td class="whitespace-normal px-3 py-4 text-sm text-gray-900 ">{{project.description[:250] ~ '...'  }}</td>										
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 flex">
 											{% for media in project.media %}
 												<div>

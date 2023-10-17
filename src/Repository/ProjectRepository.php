@@ -26,6 +26,7 @@ class ProjectRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->select('p', 'm') // Sélectionnez la catégorie (c) et la photo (m)
             ->leftJoin('p.media', 'm')
+            ->orderBy('p.id', 'DESC')
             ->getQuery()
             ->getResult();
     }

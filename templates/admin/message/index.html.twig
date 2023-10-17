@@ -4,7 +4,7 @@
 
 {% block dashboardcontent %}
 
-<div class="container max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
+<div class="container max-w-full  mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="sm:flex sm:items-center">
 			<div class="sm:flex-auto">
 				<h1 class="text-base font-semibold leading-6 text-gray-900">Tous les messages</h1>
@@ -37,8 +37,8 @@
 							<tbody class="divide-y divide-gray-200 bg-white">
 								{% for message in messages %}
 									<tr>
-										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{message.subject}}</td>
-										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{message.content}}</td>
+										<td class="whitespace-normal py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{message.subject}}</td>
+										<td class="whitespace-normal py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{message.content[:250] ~ '...'  }}</td>
 										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ message.sentAt|date('Y-m-d H:i:s') }}</td>										
 										<td class="relative whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
 											<a href="{{ path('admin_message_delete', { id: message.id }) }}" type="button" class="rounded bg-red-500 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Supprimer<span class="sr-only">, Lindsay Walton</span>

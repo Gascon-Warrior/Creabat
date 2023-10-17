@@ -29,7 +29,7 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
-    #[ORM\Column(length: 1000)]
+    #[ORM\Column(length: 3000)]
     private ?string $description = null;
 
     public function __construct()

@@ -6,26 +6,31 @@
 
 {% block body %}
 
-	<div class="py-24 sm:py-32">
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-				<div class="lg:pr-4">
-					<div class="relative  rounded-3xl px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
-						<img class="absolute rounded-3xl  inset-0 h-auto w-full object-cover  " src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" alt="{{ actu.getMediaAlt}}">
-					</div>
-				</div>
-				<div class="lg:mt-0 sm:mt-52">
-					<div class="text-base leading-7 text-gray-700 lg:max-w-lg ">
-						<h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{actu.title}}</h1>
-						<div class="max-w-xl">
-                            <p class="mt-6">{{actu.createdAt|date('d-m-Y')}}</p>
-							<p class="mt-6">{{actu.content}}</p>
-						</div>
-					</div>
 
+	<div
+		class="container my-24 mx-auto md:px-6">
+		<!-- Section: Design Block -->
+		<section class="mb-32">
+			<img src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" class="aspect-video object-cover mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20" alt="{{actu.getMediaAlt}}"/>
+
+			<div class="mb-6 flex items-center">
+				<img src="{{asset('assets/img/photos/damien-thumbnail.jpg')}}" class="mr-2 h-8 rounded-full" alt="avatar" loading="lazy"/>
+				<div>
+					<span>
+						Publié le
+						<u>{{actu.createdAt|date('d-m-Y')}}</u>
+					</span>
 				</div>
 			</div>
-		</div>
+
+			<h1 class="mb-6 text-3xl font-bold">
+				{{actu.title}}
+			</h1>
+
+			<p>
+				{{actu.content}}
+			</p>
+		</section>
 	</div>
 
 {% endblock %}

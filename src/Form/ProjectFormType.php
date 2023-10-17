@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Project;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,7 +17,7 @@ class ProjectFormType extends AbstractType
             ->add('title', options: [
                 'label' => 'Titre'
             ])
-            ->add('description', TextareaType::class, options: [
+            ->add('description', CKEditorType::class, options: [
                 'label' => 'Description'
             ])            
             ->add('photo', MediaFormType::class, options: [

@@ -5,7 +5,7 @@
 
 {% block dashboardcontent %}
 
-	<div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+	<div class="container max-w-full mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="sm:flex sm:items-center">
 			<div class="sm:flex-auto">
 				<h1 class="text-base font-semibold leading-6 text-gray-900">Toutes les actualités</h1>
@@ -38,9 +38,9 @@
 							<tbody class="divide-y divide-gray-200 bg-white">
 								{% for actu in actus %}
 									<tr>
-										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{actu.title}}</td>
-										<td class="px-3 py-4 text-sm text-gray-900 text-ellipsis max-w-prose">{{actu.content}}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900 flex">
+										<td class="whitespace-normal py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{actu.title}}</td>
+										<td class="whitespace-normal px-3 py-4 text-sm text-gray-900 max-w-prose">{{actu.content[:250] ~ '...'  }}</td>
+										<td class="whitespace-normal px-3 py-4 text-sm text-gray-900 flex">
 											<img src="{{ asset('assets/uploads/actus/mini/300x300-' ~ actu.getMediaPicture()) }}" alt="{{ actu.title }}" width="100">
 											{% for media in actu.media %}
 												<div>
