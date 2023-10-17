@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Actu;
 use App\Entity\Media;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,7 +20,7 @@ class ActuFormType extends AbstractType
             ->add('title', options:[
                 'label' => 'Titre'
             ])
-            ->add('content',TextareaType::class, options:[
+            ->add('content',CKEditorType::class, options:[
                 'label' => 'Contenu'
             ])            
            /* ->add('photo', MediaFormType::class, [                
