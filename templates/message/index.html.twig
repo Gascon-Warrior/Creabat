@@ -4,11 +4,46 @@
 {% endblock %}
 
 {% block body %}
-    <main class="h-full">
-    
-        <div class="container w-50 my-14 mx-auto">
-        <h1 class="text-xl font-black">Formulaire de contact</h1>
-            {{ form(form) }}
-        </div>
-    </main>
-{% endblock %}
+	<main class="py-14 sm:py-32">
+
+		<div class="mx-auto max-w-7xl px-6 lg:px-8  2xl:w-4/5">
+			<div>
+				<h1 class="text-3xl font-bold mb-16 sm:text-4xl">Formulaire de contact</h1>
+				{{ form(form) }}
+				</div>
+						<h2 class="text-2xl font-bold mb-14 mt-16">Infos pratiques</h2>
+				<div class="flex w-full justify-around">
+					<div>
+						<p class="font-bold">Horaires d'ouverture :</p>
+						<ul>
+							<li>Lundi :
+								<time class="font-thin">09h00 - 18h00</time>
+							</li>
+							<li>Mardi :
+								<time class="font-thin">09h00 - 18h00</time>
+							</li>
+                            <li>Mercredi :
+								<time class="font-thin">09h00 - 18h00</time>
+							</li>
+							<li>Jeudi :
+								<time class="font-thin">09h00 - 18h00</time>
+							</li>
+                            <li>Vendredi :
+								<time class="font-thin">09h00 - 18h00</time>
+							</li>
+							<li>Samedi :
+								<time class="font-thin">Fermé</time>
+							</li>
+                            <li>Dimanche :
+								<time class="font-thin">Fermé</time>
+							</li>
+							
+							<!-- Ajoutez d'autres jours ici -->
+						</ul>
+					</div>
+					{% include "_partials/_carte.html.twig" %}
+
+				</div>
+			</div>
+		</main>
+	{% endblock %}

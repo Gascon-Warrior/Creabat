@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+    {% block stylesheets %}
+        {{ parent() }}
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />        
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" defer></script>
+    {% endblock %}
+
+{% block title %}Hello Réalisations{% endblock %}
+
+{% block body %}
+
+    <main class="py-14 sm:py-32">
+        <article class="mx-auto w-9/12 px-6 lg:px-8">
+            <h1 class="text-3xl font-bold mb-16 sm:text-4xl">{{ project[0].title }}</h1>
+            {% include "_partials/_carousel.html.twig" %}
+            <div class="mt-8 ">
+                <time class="text-xs text-gray-500" datetime="{{project[0].date | date('d-m-Y')}}">Publié le: {{ project[0].date | date('d-m-Y') }}</time>
+                <p class="mt-8">               
+                {{ project[0].description }}
+            </p>
+            </div>
+            
+        </article>
+    </main>
+    
+{% endblock %}

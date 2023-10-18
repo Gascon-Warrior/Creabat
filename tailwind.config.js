@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {  
   content: [
-    "templates/**/*.html.twig"   
+    "templates/**/*.html.twig"     
 ],
   theme: {
     extend: {
@@ -14,7 +14,7 @@ module.exports = {
   },
   plugins: [   
     require('@tailwindcss/forms'),
-    require('tw-elements/dist/plugin')   
+    require('tw-elements/dist/plugin')    
   ],
   
 }

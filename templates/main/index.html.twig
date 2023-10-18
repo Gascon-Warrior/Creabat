@@ -10,7 +10,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" defer integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
-	{{ encore_entry_script_tags('app') }}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js" defer></script>
+	<script src="{{asset('/assets/js/slider.js')}}" defer></script>
+	<script src="{{asset('/assets/js/scroll-animations.js')}}" defer></script>
+	{{ parent() }}
 {% endblock %}
 
 {% block title %}Creabat Menuiserie | Accueil
