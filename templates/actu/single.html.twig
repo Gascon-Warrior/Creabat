@@ -7,30 +7,30 @@
 {% block body %}
 
 
-	<div
-		class="container my-24 mx-auto md:px-6">
+	<main class="container py-24 sm:py-32 mx-auto md:px-6 xl:w-3/5">
 		<!-- Section: Design Block -->
 		<section class="mb-32">
+		<h1 class="mb-16 text-3xl font-bold">
+				{{actu.title}}
+			</h1>
 			<img src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" class="aspect-video object-cover mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20" alt="{{actu.getMediaAlt}}"/>
 
 			<div class="mb-6 flex items-center">
 				<img src="{{asset('assets/img/photos/damien-thumbnail.jpg')}}" class="mr-2 h-8 rounded-full" alt="avatar" loading="lazy"/>
 				<div>
-					<span>
-						Publié le
-						<u>{{actu.createdAt|date('d-m-Y')}}</u>
+					<span class="text-xs text-gray-500">
+						Publié le:
+						<time >{{actu.createdAt|date('d-m-Y')}}</time>
 					</span>
 				</div>
 			</div>
 
-			<h1 class="mb-6 text-3xl font-bold">
-				{{actu.title}}
-			</h1>
+			
 
 			<p>
 				{{actu.content}}
 			</p>
 		</section>
-	</div>
+	</main>
 
 {% endblock %}
