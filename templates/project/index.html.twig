@@ -15,12 +15,12 @@
 					{% for project in projects.data %}
 						<article class="relative isolate flex flex-col gap-8 lg:flex-row">
 
-						{% for media in project.media %}
+						{#{% for media in project.media %}#}
 							<div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-								<img src="{{ asset('assets/uploads/projets/' ~ media.picture()) }}" alt="{{ media.alt}}" class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
+								<img src="{{ asset('assets/uploads/projets/' ~ project.media[0].picture()) }}" alt="{{ project.media[0].alt }}" class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
 								<div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 							</div>
-						{% endfor %}
+						{#{% endfor %}#}
 							
 							<div>
 								<div class="flex items-center gap-x-4 text-xs">

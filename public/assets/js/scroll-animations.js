@@ -89,4 +89,4 @@ const timeline2 = gsap.timeline({
 })
 .to(croix4, {
     y: 360, // Rétrécir à 50% de la hauteur d'origine
-});
+}); 

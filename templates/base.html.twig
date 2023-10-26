@@ -15,20 +15,17 @@
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
-			<script src="{{asset('/assets/js/main.js')}}" defer></script>		
+			<script src="{{asset('/assets/js/main.js')}}" defer></script>
 		{% endblock %}
-
-		
 	</head>
 
 	<body class="bg-slate-50 min-h-full ">
 		{% include "_partials/_nav.html.twig" %}
 
 
-		{% block body %}
-			{% include "_partials/_breadcrumbs.html.twig" %}
-		{% endblock %}
+		{% block body %}{% endblock %}
 
 		{% include "_partials/_footer.html.twig" %}
 	</body>
+	
 </html>
