@@ -68,7 +68,7 @@ class AdminSupplierController extends AbstractController
             $em->flush();
 
             //Ajout d'un message flash
-            $this->addFlash('succes', 'Fournisseur ajoutée avec succès');
+            $this->addFlash('success', 'Fournisseur ajoutée avec succès');
 
             //On redirige
             return $this->redirectToRoute('admin_supplier_index');
@@ -112,6 +112,8 @@ class AdminSupplierController extends AbstractController
             $em->persist($supplier);
             $em->flush();
 
+            $this->addFlash('success', 'Fournisseur modifié avec succès');
+
             return $this->redirectToRoute('admin_supplier_index');
         }
 
@@ -127,6 +129,8 @@ class AdminSupplierController extends AbstractController
         $em->remove($supplier);
         $em->flush();
 
+        $this->addFlash('success', 'Fournisseur supprimé avec succès');
+        
         return $this->redirectToRoute('admin_supplier_index');
     }
 }

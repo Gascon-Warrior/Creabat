@@ -69,7 +69,7 @@ class AdminCategoryController extends AbstractController
             $em->flush();
 
             //Ajout d'un message flash
-            $this->addFlash('succes', 'Catégorie ajoutée avec succès');
+            $this->addFlash('success', 'Catégorie ajoutée avec succès');
 
             //On redirige
             return $this->redirectToRoute('admin_category_index');
@@ -112,6 +112,8 @@ class AdminCategoryController extends AbstractController
             // On Génère le slug, stocker et persister les changements            
             $em->persist($category);
             $em->flush();
+
+            $this->addFlash('success', 'Catégorie modifiée avec succès');
 
             return $this->redirectToRoute('admin_category_index');
         }

@@ -1,37 +1,43 @@
-{% extends 'base.html.twig' %}
+	{% extends 'base.html.twig' %}
 
-{% block title %}
-	{{actu.title}}
-{% endblock %}
+	{% block title %}
+		{{actu.title}}
+	{% endblock %}
 
-{% block body %}
+	{% block body %}
 
-
-	<main class="container py-24 sm:py-32 mx-auto md:px-6 xl:w-3/5">
-		<!-- Section: Design Block -->
-		<section class="mb-32">
-		<h1 class="mb-16 text-3xl font-bold">
-				{{actu.title}}
-			</h1>
-			
-			<img src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" class="aspect-video object-cover mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20" alt="{{actu.getMediaAlt}}"/>
-
-			<div class="mb-6 flex items-center">
-				<img src="{{asset('assets/img/photos/damien-thumbnail.jpg')}}" class="mr-2 h-8 rounded-full" alt="avatar" loading="lazy"/>
-				<div>
-					<span class="text-xs text-gray-500">
-						<time>{{actu.createdAt|date('d-m-Y')}}</time>
-						Publié le:
-					</span>
-				</div>
+		<main	
+			class="py-24 mx-4 md:px-6 md:mx-auto xl:w-3/5">
+			<!-- Section: Design Block -->
+			<div class="flex justify-end">
+				<button class=" bg-customBlue hover:bg-customBlueHover text-white py-3 px-4 rounded-lg" onclick="window.history.go(-1); return false;" type="submit">Retour à la liste</button>
 			</div>
+			<section class="mb-6 md:mb-32 text-justify">
+				<h1 class=" mb-8 md:mb-10 text-3xl font-bold">
+					{{actu.title}}	
+				</h1>
+				{# IMAGE EN OBJET #}
+				<img src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" class="mb-3 h-96 w-full object-cover rounded-lg md:h-[600px] md:mb-3 3xl:h-[850px]"  alt="{{actu.getMediaAlt}}"/>
 
-			
+				{# iMAGES EN BACKGROUND<div 
+					class="h-screen bg-no-repeat bg-cover bg-center bg-fixed"
+					style="background-image: url({{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }})">
+				</div>#}
 
-			<p>
-				{{actu.content|raw}}
-			</p>
-		</section>
-	</main>
+				<div class="mb-6 flex items-center">
+					<img src="{{asset('assets/img/photos/damien-thumbnail.jpg')}}" class="mr-2 h-8 rounded-full" alt="avatar" loading="lazy"/>
+					<div>
+						<span class="text-xs text-gray-500">
+							Publié le:
+							<time>{{actu.createdAt|date('d-m-Y')}}</time>
+						</span>
+					</div>
+				</div>
 
-{% endblock %}
+				<p class="text-left text-base 3xl:text-xl">
+					{{actu.content|raw}}
+				</p>
+			</section>
+		</main>
+
+	{% endblock %}

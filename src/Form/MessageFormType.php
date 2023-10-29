@@ -52,7 +52,7 @@ class MessageFormType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'rounded-md bg-customBlue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'                    
+                    'class' => 'rounded-md bg-customBlue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-customBlueHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 3xl:py4 3xl:px-5'                    
                 ],
                 'label' => 'Envoyer'
             ])

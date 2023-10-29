@@ -314,7 +314,9 @@
 				</div>
 
 				<main class="py-10">
-					<div class="px-4 sm:px-6 lg:px-8"> {% block dashboardcontent %}{% endblock %}
+					<div class="px-4 sm:px-6 lg:px-8"> 
+					{% include '_partials/_alert-success.html.twig' %}
+					{% block dashboardcontent %}{% endblock %}
 						<!-- Your content -->
 						</div>
 					</main>

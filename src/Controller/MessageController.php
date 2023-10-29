@@ -48,6 +48,7 @@ class MessageController extends AbstractController
 
           $mailer->send($email);
             //ajouter message flash
+          $this->addFlash('success', 'Votre message a bien été envoyé.');
 
           return $this ->redirectToRoute('contact_message');
         }  

@@ -71,7 +71,7 @@ class AdminActuController extends AbstractController
             $em->flush();
 
             //Ajout d'un message flash
-            $this->addFlash('succes', 'atualité ajoutée avec succès');
+            $this->addFlash('success', 'Actualité ajoutée avec succès');
 
             //On redirige
             return $this->redirectToRoute('admin_actus_index');
@@ -115,6 +115,8 @@ class AdminActuController extends AbstractController
             $em->persist($actu);
             $em->flush();
 
+            $this->addFlash('success', 'Atualité modifiée avec succès');
+
             return $this->redirectToRoute('admin_actus_index');
         }
 
@@ -131,6 +133,8 @@ class AdminActuController extends AbstractController
         //On supprime l'actualité
         $em->remove($actu);
         $em->flush(); 
+
+        $this->addFlash('success', 'Actualité suprimée avec succès');
 
         return $this->redirectToRoute('admin_actus_index');   
     }

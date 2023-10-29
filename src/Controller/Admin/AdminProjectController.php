@@ -70,7 +70,7 @@ class AdminProjectController extends AbstractController
             $em->flush();
 
             //Ajout d'un message flash
-            $this->addFlash('succes', 'projet ajouté avec succès');
+            $this->addFlash('success', 'Projet ajouté avec succès');
 
             //On redirige
             return $this->redirectToRoute('admin_project_index');
@@ -125,7 +125,7 @@ class AdminProjectController extends AbstractController
             $em->flush();
 
             //Ajout d'un message flash
-            //$this->addFlash('succes', 'produit modifié avec succès');
+            $this->addFlash('success', 'Projet modifié avec succès');
 
             //On redirige
             return $this->redirectToRoute('admin_project_index');
@@ -143,6 +143,8 @@ class AdminProjectController extends AbstractController
     {   
         $em->remove($project);
         $em->flush(); 
+
+        $this->addFlash('success', 'Projet supprimé avec succès');
 
         return $this->redirectToRoute('admin_project_index');   
         

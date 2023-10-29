@@ -15,26 +15,29 @@
 					{% for project in projects.data %}
 						<article class="relative isolate flex flex-col gap-8 lg:flex-row">
 
-						{#{% for media in project.media %}#}
+						
 							<div class="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
 								<img src="{{ asset('assets/uploads/projets/' ~ project.media[0].picture()) }}" alt="{{ project.media[0].alt }}" class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
 								<div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 							</div>
-						{#{% endfor %}#}
-							
+						
 							<div>
 								<div class="flex items-center gap-x-4 text-xs">
 									<time datetime="2020-03-16" class="text-gray-500">{{project.date|date('d-m-Y')}}</time>
 
 								</div>
-								<div class="group relative max-w-xl">
+								<div class="group relative max-w-xl text-justify">
 									<h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
 										<a href="{{ path('project_single', { 'slug': project.slug }) }}">
 											<span class="absolute inset-0"></span>
 											{{project.title}}
 										</a>
 									</h3>
-									<p class="mt-5 text-sm leading-6 text-gray-600">{{project.description[:250] ~ '...'}}</p>
+									<p class="mt-5 text-sm leading-6 text-gray-600">
+										{% autoescape false %}
+											{{project.description|striptags|slice(0, 250) ~ '...'}}
+										{% endautoescape %}
+									</p>
 								</div>
 								<div class="mt-6 flex border-t border-gray-900/5 pt-6">
 									<div class="relative flex items-center gap-x-4">
