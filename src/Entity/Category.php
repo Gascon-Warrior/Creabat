@@ -7,8 +7,12 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[UniqueEntity('name')]
 class Category
 {
     use SlugTrait;
@@ -18,7 +22,9 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100)]    
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min: 4, max: 100, minMessage:'La catégorie doit faire un minimu 4 caractères.', maxMessage:'La catégorie doit faire un maximu 100 caractères.')]
     private ?string $name = null;
 
     #[ORM\OneToOne(inversedBy: 'category', cascade: ['persist', 'remove'])]

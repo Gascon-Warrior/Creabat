@@ -16,44 +16,39 @@ class Message
     private ?int $id = null;
 
     #[ORM\Column(length: 200)]
-    #[Assert\NotBlank()]
-    #[Assert\Length(min:3 , max: 200)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min:3 , max: 200,  minMessage:'Le sujet doit faire 3 caractères minimum.', maxMessage:'Le sujet doit faire 200 caractères maximum.')]
     private ?string $subject = null;
 
     #[ORM\Column(length: 3000)]
-    #[Assert\NotBlank()]
-    #[Assert\Length(min: 20, max: 3000)]
+    #[Assert\NotBlank(message:'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min: 20, max: 3000, minMessage:'Le contenu doit faire 20 caractères minimum.',  maxMessage:'Le contenu doit faire 3000 caractères maximum.')]
     private ?string $content = null;
 
     #[ORM\Column]
+    #[Assert\DateTime()]
     private ?\DateTimeImmutable $sent_at = null;
 
     #[ORM\Column(options:['default' => false])]
     #[ORM\JoinColumn(nullable: true)]
     private ?bool $is_seen = null;
 
-   /* #[ORM\ManyToOne(inversedBy: 'messages')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
-    #[ORM\JoinColumn(nullable: true)]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?User $user = null;*/
-
     #[ORM\Column(length: 100, nullable: true)]
-    #[Assert\Length(min: 2, max: 100)]
+    #[Assert\Length(min: 2, max: 100, minMessage:'Le prénom doit faire 2 caractères minimum.',  maxMessage:'Le prénom doit faire 100 caractères maximum.')]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank()]
-    #[Assert\Length(min: 2, max: 100)]
+    #[Assert\NotBlank(message:'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min: 2, max: 100,  message:'Le nom doit faire entre 2 et 100 caractères.')]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 280)]
-    #[Assert\NotBlank()]
-    #[Assert\Email()]
-    #[Assert\Length(min: 2, max: 280)]
+    #[Assert\Email(message: 'Veuillez renseigner un mail valide.')]
+    #[Assert\Length(min: 3, max: 280, minMessage:'Le mail doit faire 3 caractères minimum.',  maxMessage:'Le mail doit faire 280 caractères maximum.')]
     private ?string $email = null;
 
     #[ORM\Column(length: 30, nullable: true)]
+    #[Assert\Length(min: 10, max: 30, minMessage:'Le numéro de téléphone doit faire 10 caractères minimum.', maxMessage:'Le numéro de téléphone doit faire 30 caractères maximum.')]
     private ?string $phone = null;
 
     public function __construct()
@@ -114,18 +109,6 @@ class Message
 
         return $this;
     }
-
-   /* public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }*/
 
     public function getFirstname(): ?string
     {

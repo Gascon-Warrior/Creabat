@@ -2016,6 +2016,11 @@ ajv@^8.0.0, ajv@^8.9.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+animated-tailwindcss@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/animated-tailwindcss/-/animated-tailwindcss-4.0.0.tgz#017eca1fdaf2e77c040225c24aa5a44fc564a4c2"
+  integrity sha512-sJquGVOQkdRuEJiDKX/bjjuXgGTpXBiNKiYD3ef+hoNdpWnjDrOVInOHB9QJC/Q7Ir5Ae+KEAg/ZW/ZBS6KcSw==
+
 ansi-html-community@^0.0.8:
   version "0.0.8"
   resolved "https://registry.npmjs.org/ansi-html-community/-/ansi-html-community-0.0.8.tgz"
@@ -6337,6 +6342,11 @@ sync-rpc@^1.3.6:
   dependencies:
     get-port "^3.1.0"
 
+tailwindcss-animated@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/tailwindcss-animated/-/tailwindcss-animated-1.0.1.tgz#a2ab097848b5802dd824f65d65f2840fc5ec5c7e"
+  integrity sha512-u5wusj89ZwP8I+s8WZlaAd7aZTWBN/XEG6QgMKpkIKmAf3xP1A6WYf7oYIKmGaB10UAQaSqWopi/i1ozzZEs8Q==
+
 tailwindcss@3.3.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.3.0.tgz"
@@ -6394,6 +6404,11 @@ tailwindcss@^3.3.3:
     postcss-selector-parser "^6.0.11"
     resolve "^1.22.2"
     sucrase "^3.32.0"
+
+taos@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/taos/-/taos-1.0.5.tgz#4669ad23455c2464dc7475b212ee63d015463de9"
+  integrity sha512-JSwR+ldec2dSjOnssN/VGjXSR44DbzUVeAXRDVEuMsc7xndx8ePcQ4QMAMUAL5V4KN1wlmhumyQ7aSykDf8uhw==
 
 tapable@^2.1.1, tapable@^2.2.0, tapable@^2.2.1:
   version "2.2.1"

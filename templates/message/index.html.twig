@@ -1,25 +1,34 @@
 {% extends 'base.html.twig' %}
+{% block meta_description %}Besoin de conseils, d'un devis, contactez nous pour en discuter{% endblock %}
 
-{% block title %}Formulaire de contact
+{% block meta_og_title %}Formulaire de contact | Créabat Menuiseries{% endblock %}
+
+{% block meta_og_description %}Besoin de conseils, d'un devis, contactez nous pour en discuter{% endblock %}
+
+{# Voir pour meta_ogo_image #}
+{% block meta_og_image %}
+	
 {% endblock %}
+
+{% block title %}Formulaire de contact | Créabat Menuiseries{% endblock %}
 
 {% block body %}
 	{% include '_partials/_alert-success.html.twig' %}	
 	<main class="py-14 sm:py-32">
 		<div class="mx-auto max-w-7xl px-6 lg:px-8  xl:w-3/5">
 			<div>
-				<h1 class="text-3xl font-bold mb-16 sm:text-4xl">Formulaire de contact</h1>
+				<h1 class="text-3xl font-bold mb-16 sm:text-4xl uppercase">Formulaire de contact</h1>
 				{{ form(form) }}
 				</div>
 				<div class="w-full border-t border-gray-300  mb-14 mt-16"></div>
 
-				<h2 class="text-2xl font-bold mb-12">Infos pratiques</h2>
+				<h2 class="text-2xl font-bold mb-12 uppercase">Infos pratiques</h2>
 				<div class="flex w-full justify-start">
 
 					{% include "_partials/_carte.html.twig" %}
 					<div class="flex flex-col justify-between ml-16">
 						<div class="mr-16 mt-24">
-							<p class="font-bold mb-1">Nous trouver :</p>
+							<h2 class="font-bold mb-1 uppercase">Nous trouver :</h2>
 							<div class="flex text-end ">
 								<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewbox="0 0 384 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M352 192c0-88.4-71.6-160-160-160S32 103.6 32 192c0 15.6 5.4 37 16.6 63.4c10.9 25.9 26.2 54 43.6 82.1c34.1 55.3 74.4 108.2 99.9 140c25.4-31.8 65.8-84.7 99.9-140c17.3-28.1 32.7-56.3 43.6-82.1C346.6 229 352 207.6 352 192zm32 0c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192zm-240 0a48 48 0 1 0 96 0 48 48 0 1 0 -96 0zm48 80a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"/></svg>
 								<p class="ml-2">
@@ -35,7 +44,7 @@
 							</div>
 						</div>
 						<div>
-							<p class="font-bold mb-1">Horaires d'ouverture :</p>
+							<h2 class="font-bold mb-1 uppercase">Horaires d'ouverture :</h2>
 							<ul>
 								<li>Lundi :
 									<time class="font-thin">09h00 - 18h00</time>

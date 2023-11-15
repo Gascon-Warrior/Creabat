@@ -20,7 +20,8 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank(message: 'Le nom du produit doit être rempli.')]
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min:3, max: 100, message: 'Le nom du produit doit faire entre 3 et 100 caractères.')]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Media::class, cascade:['persist', 'remove'])]
@@ -30,6 +31,8 @@ class Product
     private ?Category $category = null;
 
     #[ORM\Column(length: 3000)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min:3, max: 100, minMessage: 'Le nom du produit doit faire 3 caractères minimum.', maxMessage: 'Le nom du produit doit faire 100 caractères maximum.')]
     private ?string $description = null;
 
     public function __construct()

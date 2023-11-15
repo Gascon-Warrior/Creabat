@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Entity\Trait\SlugTrait;
 use App\Repository\ActuRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ActuRepository::class)]
+#[UniqueEntity(fields:['title'], message:'Ce titre existe déjà en base de donées.')]
 class Actu
 {
     use SlugTrait;
@@ -17,15 +20,20 @@ class Actu
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min: 20, max: 255)]    
     private ?string $title = null;
 
-    #[ORM\Column(length: 5000)]
+    #[ORM\Column(length: 5000)]  
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
     private ?string $content = null;
 
     #[ORM\Column(options:['default' => 'CURRENT_TIMESTAMP'])]
+    #[Assert\DateTime()]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\DateTime()]
     private ?\DateTimeImmutable $modified_at = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]

@@ -37,22 +37,23 @@ class MessageFormType extends AbstractType
                 ]
             ])
             ->add('phone', TelType::class, [
-                'label' => 'Numéro de téléphone'
+                'label' => 'Numéro de téléphone (optionnel)'
             ])
             ->add('subject', TypeTextType::class, [
-                'label' => 'Sujet',
+                'label' => 'Projet',
                 'constraints' => [
                     new Assert\NotBlank(),
                 ]
             ])
             ->add('content', TextareaType::class, [
+                'label' => 'Message',
                 'constraints' => [
                     new Assert\NotBlank(),
                 ]
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'rounded-md bg-customBlue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-customBlueHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 3xl:py4 3xl:px-5'                    
+                    'class' => 'rounded-md bg-customYellow px-3 py-2 text-sm font-black text-black shadow-sm hover:bg-customYellowHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 3xl:py4 3xl:px-5'                    
                 ],
                 'label' => 'Envoyer'
             ])

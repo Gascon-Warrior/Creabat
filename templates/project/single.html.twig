@@ -1,4 +1,17 @@
 {% extends 'base.html.twig' %}
+{% block meta_description %}Découvrez notre galerie de projets de pose de menuiseries, volets, portails, portes, fenêtres et bien plus. Parcourez nos réalisations pour voir comment notre équipe expérimentée a transformé des espaces avec expertise et créativité. Trouvez l'inspiration pour votre propre projet.{% endblock %}
+
+
+{% block meta_og_title %}{{ project[0].title }} | Créabat Menuiseries{% endblock %}
+
+{% block meta_og_description %}Découvrez notre galerie de projets de pose de menuiseries, volets, portails, portes, fenêtres et bien plus. Parcourez nos réalisations pour voir comment notre équipe expérimentée a transformé des espaces avec expertise et créativité. Trouvez l'inspiration pour votre propre projet.{% endblock %}
+
+{# Voir pour meta_ogo_image #}
+{% block meta_og_image %}	
+{% endblock %}
+
+{% block title %}{{ project[0].title }} | Créabat Menuiseries{% endblock %}
+
 {% block stylesheets %}
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet"/>
 	{{ parent() }}
@@ -9,18 +22,20 @@
 	{{ parent() }}
 {% endblock %}
 
-{% block title %}
-	Hello Réalisations
-{% endblock %}
-
 {% block body %}
-	<main class="w-full sm:py-32  md:w-8/12 md:py-32 md:mx-auto lg:w-9/12 xl:w-3/5">	
-			<div class="flex justify-end">
-				<button class="bg-customBlue hover:bg-customBlueHover text-white py-3 px-4 rounded-lg" onclick="window.history.go(-1); return false;" type="submit">Retour à la liste</button>
+	<main class="w-full sm:py-32  md:w-8/12 md:py-32 md:mx-auto lg:w-9/12 xl:w-3/5">
+		<div class="flex group justify-end relative text-black font-black cursor-pointer" type="submit" onclick="window.history.go(-1); return false;">
+			<div class="pr-[10px] flex items-center absolute z-10 right-0 top-[50%] translate-y-[-50%] ">
+				<svg xmlns="http://www.w3.org/2000/svg" height="1em"  class="mr-1  group-hover:delay-[5000ms]" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+					<path d="M7.4 273.4C2.7 268.8 0 262.6 0 256s2.7-12.8 7.4-17.4l176-168c9.6-9.2 24.8-8.8 33.9 .8s8.8 24.8-.8 33.9L83.9 232 424 232c13.3 0 24 10.7 24 24s-10.7 24-24 24L83.9 280 216.6 406.6c9.6 9.2 9.9 24.3 .8 33.9s-24.3 9.9-33.9 .8l-176-168z"/>
+				</svg>
+				<span class="hidden group-hover:block">Retour à la liste</span>
 			</div>
+			<div class="h-[50px] w-[45px] absolute z-0 right-0 top-[50%] translate-y-[-50%] border-2 rounded-lg border-customYellow group-hover:w-[150px] group-hover:duration-700"></div>
+		</div>
 		<article class="mx-auto px-6 md:px-8">
-			<h1 class="text-3xl font-bold mb-16 sm:text-4xl">{{ project[0].title }}</h1>
-            {#Carousel*******************************************************************************************#}
+			<h1 class="text-3xl font-bold mb-16 uppercase">{{ project[0].title }}</h1>
+			{#Carousel*******************************************************************************************#}
 			<div
 				id="default-carousel" class="relative h-56 lg:w-3/4 lg:h-[31rem]" data-carousel="slide">
 				<!-- Carousel wrapper -->
@@ -61,10 +76,14 @@
 				</button>
 			</div>
 			{#Carousel*******************************************************************************************#}
-			<div class="mt-8 text-justify">
+			<div class="mt-6 text-left">
+			<div class="flex items-center">
+				<img src="{{asset('assets/img/photos/damien-thumbnail.jpg')}}" class="mr-2 h-8 rounded-full" alt="avatar" loading="lazy"/>
 				<time class="text-xs text-gray-500" datetime="{{project[0].date | date('d-m-Y')}}">Publié le:
 					{{ project[0].date | date('d-m-Y') }}</time>
-				<p class="mt-8 ">
+			</div>
+				
+				<p class="mt-6 ">
 					{{ project[0].description|raw }}
 				</p>
 			</div>

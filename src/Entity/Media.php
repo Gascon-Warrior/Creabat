@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 class Media
@@ -14,12 +16,15 @@ class Media
     private ?int $id = null;
 
     #[ORM\Column(length: 80)]
+    #[Assert\File(maxSize:'1024M', maxSizeMessage:'Le fichier doit faire un maximum de 1024M.')]
     protected ?string $picture = null;
 
-    #[ORM\Column(length: 500)]
+    #[ORM\Column(length: 500)] 
+    #[Assert\Length(max:500, maxMessage:'Le champs alt doit faire 500 caratères maximum.')]   
     public ?string $alt = null;
 
     #[ORM\Column(length: 500, nullable: true)]
+    #[Assert\Length(max:500, maxMessage:'Le champs légende doit faire 500 caratères maximum.')]
     public ?string $caption = null;
 
 

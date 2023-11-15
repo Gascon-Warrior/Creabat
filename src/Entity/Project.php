@@ -7,8 +7,14 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[UniqueEntity('title')]
+#[UniqueEntity(fields:['title'], message:'Ce titre existe déjà en base de donées.')]
+
 class Project
 {
     use SlugTrait;
@@ -18,13 +24,17 @@ class Project
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255)]   
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
+    #[Assert\length(min: 10, max: 255, minMessage:'Le titre doit être compris entre 10 et 255 caractères.',  maxMessage:'Le titre doit être compris entre 10 et 255 caractères.')]
     private ?string $title = null;
 
-    #[ORM\Column(length: 15000)]
+    #[ORM\Column(length: 500000)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
     private ?string $description = null;
 
     #[ORM\Column(options:['default' => 'CURRENT_TIMESTAMP'])]
+    #[Assert\DateTime]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Media::class, cascade:['persist'])]

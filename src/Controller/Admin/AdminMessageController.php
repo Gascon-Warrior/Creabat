@@ -21,6 +21,17 @@ class AdminMessageController extends AbstractController
             'messages' => $messages
         ]);
     }
+    
+    #[Route('/consulter/{id}', name:'read')]
+    public function read($id, MessageRepository $messageRepository, Message $message, EntityManagerInterface $em): Response
+    {
+        $message = $messageRepository->find($id);
+        $message->setIsSeen(true);
+
+        $em->flush();
+
+        return $this->render('admin/message/single.html.twig', compact('message'));
+    }
 
     #[Route('/suppression/{id}', name: 'delete')]
     public function delete(Message $message, EntityManagerInterface $em): Response

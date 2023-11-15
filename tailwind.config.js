@@ -1,14 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {  
-  content: [
-    "templates/**/*.html.twig"     
-],
+  content: {
+    relative: true,
+    transform: (content) => content.replace(/taos:/g, ''),
+    files: ['./src/*.{html,js}', './templates/**/*.html.twig'],
+  },
   theme: {
     extend: {
       colors: {
         customBlue: '#448CCB',
         customBlueHover: '#1d58bd',
         customYellow: '#FFCC03',
+        customYellowHover: '#ffd942',
         customRed: '#E52421',
       },
       screens: {
@@ -23,8 +26,15 @@ module.exports = {
   plugins: [   
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
-    require('tw-elements/dist/plugin')    
+    require('tw-elements/dist/plugin'),
+    require('tailwindcss-animated'),
+    require('taos/plugin')   
   ],
+  safelist: [
+    '!duration-[0ms]',
+    '!delay-[0ms]',
+    'html.js :where([class*="taos:"]:not(.taos-init))'
+  ]
   
 }
 

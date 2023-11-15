@@ -157,10 +157,22 @@ a{
 	transform: rotate(45deg)
 }
 
-.box-1, .box-2, .box-3, .box-4 {
+.box-1{
 	position: absolute;	
-	top: 200px;
-	
+	top: 200px;	
+}
+
+.box-2{
+	position: absolute;	
+	top: 350px;	
+}
+.box-3{
+	position: absolute;	
+	top: 500px;	
+}
+.box-4{
+	position: absolute;	
+	top: 650px;	
 }
 .horizontal-line, .vertical-line {
     position: absolute;
@@ -184,3 +196,9 @@ a{
 }
 
 /*****************************************Fin Animation Croix**************************************/
+@media screen and (max-width: 540px)
+{
+	.call_to_action {
+		height: 300px;
+	}
+}

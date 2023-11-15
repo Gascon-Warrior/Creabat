@@ -1,43 +1,60 @@
-	{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
+{% block meta_description %}Explorez notre blog pour en apprendre davantage sur notre entreprise spécialisée en pose de menuiseries, volets, portails, portes, fenêtres et bien plus. Découvrez nos projets, notre expertise et nos conseils pour personnaliser votre espace selon vos besoins et votre style.{% endblock %}
 
-	{% block title %}
-		{{actu.title}}
-	{% endblock %}
 
-	{% block body %}
+{% block meta_og_title %}{{ actu.title }} | Créabat Menuiseries{% endblock %}
 
-		<main	
-			class="py-24 mx-4 md:px-6 md:mx-auto xl:w-3/5">
-			<!-- Section: Design Block -->
-			<div class="flex justify-end">
-				<button class=" bg-customBlue hover:bg-customBlueHover text-white py-3 px-4 rounded-lg" onclick="window.history.go(-1); return false;" type="submit">Retour à la liste</button>
+{% block meta_og_description %}Explorez notre blog pour en apprendre davantage sur notre entreprise spécialisée en pose de menuiseries, volets, portails, portes, fenêtres et bien plus. Découvrez nos projets, notre expertise et nos conseils pour personnaliser votre espace selon vos besoins et votre style.{% endblock %}
+
+{# Voir pour meta_ogo_image #}
+{% block meta_og_image %}	
+{% endblock %}
+
+{% block title %}{{ actu.title }} | Créabat Menuiseries{% endblock %}
+
+
+
+{% block body %}
+
+	<main
+		class="py-24 mx-4 md:px-6 md:mx-auto xl:w-3/5">
+		<!-- Section: Design Block -->
+		<div class="flex group justify-end relative text-black font-black cursor-pointer" type="submit" onclick="window.history.go(-1); return false;">
+			<div class="pr-[10px] flex items-center absolute z-10 right-0 top-[-55px] md:top-[50%] md:translate-y-[-50%] ">
+				<svg xmlns="http://www.w3.org/2000/svg" height="1em"  class="mr-1  group-hover:delay-[5000ms]" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+					<path d="M7.4 273.4C2.7 268.8 0 262.6 0 256s2.7-12.8 7.4-17.4l176-168c9.6-9.2 24.8-8.8 33.9 .8s8.8 24.8-.8 33.9L83.9 232 424 232c13.3 0 24 10.7 24 24s-10.7 24-24 24L83.9 280 216.6 406.6c9.6 9.2 9.9 24.3 .8 33.9s-24.3 9.9-33.9 .8l-176-168z"/>
+				</svg>
+				<span class="hidden group-hover:block">Retour à la liste</span>
 			</div>
-			<section class="mb-6 md:mb-32 text-justify">
-				<h1 class=" mb-8 md:mb-10 text-3xl font-bold">
-					{{actu.title}}	
-				</h1>
-				{# IMAGE EN OBJET #}
-				<img src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" class="mb-3 h-96 w-full object-cover rounded-lg md:h-[600px] md:mb-3 3xl:h-[850px]"  alt="{{actu.getMediaAlt}}"/>
+			<div class="h-[50px] w-[45px] absolute z-0 right-0 top-[-70px] md:top-[50%] md:translate-y-[-50%] border-2 rounded-lg border-customYellow group-hover:w-[150px] group-hover:duration-700"></div>
+		</div>
+		<section class="mb-6 md:mb-32 text-justify">
+			<h1 class=" mb-8 md:mb-10 text-3xl font-bold uppercase">
+				{{actu.title}}
+			</h1>
+			{# IMAGE EN OBJET #}
+			<img
+			src="{{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }}" class="mb-3 h-auto w-full object-cover rounded-lg md:h-[600px] md:mb-3 lg:w-3/4 3xl:h-[850px]" alt="{{actu.getMediaAlt}}"/>
 
-				{# iMAGES EN BACKGROUND<div 
-					class="h-screen bg-no-repeat bg-cover bg-center bg-fixed"
-					style="background-image: url({{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }})">
-				</div>#}
+			{# iMAGES EN BACKGROUND<div 
+								class="h-screen bg-no-repeat bg-cover bg-center bg-fixed"
+								style="background-image: url({{ asset('assets/uploads/actus/' ~ actu.getMediaPicture()) }})">
+							</div>#}
 
-				<div class="mb-6 flex items-center">
-					<img src="{{asset('assets/img/photos/damien-thumbnail.jpg')}}" class="mr-2 h-8 rounded-full" alt="avatar" loading="lazy"/>
-					<div>
-						<span class="text-xs text-gray-500">
-							Publié le:
-							<time>{{actu.createdAt|date('d-m-Y')}}</time>
-						</span>
-					</div>
+			<div class="mb-6 flex items-center">
+				<img src="{{asset('assets/img/photos/damien-thumbnail.jpg')}}" class="mr-2 h-8 rounded-full" alt="avatar" loading="lazy"/>
+				<div>
+					<span class="text-xs text-gray-500">
+						Publié le:
+						<time>{{actu.createdAt|date('d-m-Y')}}</time>
+					</span>
 				</div>
+			</div>
 
-				<p class="text-left text-base 3xl:text-xl">
-					{{actu.content|raw}}
-				</p>
-			</section>
-		</main>
+			<p class="text-left text-base 3xl:text-xl">
+				{{actu.content|raw}}
+			</p>
+		</section>
+	</main>
 
-	{% endblock %}
+{% endblock %}

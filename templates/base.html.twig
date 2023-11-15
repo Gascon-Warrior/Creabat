@@ -2,10 +2,19 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="x-ua-compatible" content="ie=edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="keywords" content="Menuiseries, Pose, Fenêtres, Menuisier, Portes, Volets, Hautes Pyrénées, 65, Aureilhan, Portail, Stores">
+		<meta name="author" content="Damien Duquene">
+		<meta name="language" content="fr">
+		<meta name="description" content="{% block meta_description %}Découvrez nos services de pose professionnelle de menuiseries, volets, portails, portes, fenêtres, et bien plus encore dans le secteur de Tarbes, Hautes-Pyrénées. Confiez votre projet à notre équipe expérimentée pour une installation impeccable et durable, adaptée à vos besoins et à votre style.{% endblock %}">
+		<meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+		<link rel="canonical" href={% if canonical_url is defined %} {{ canonical_url }} {% else %} {{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }} {% endif %}>
+		<meta property="og:title" content="{% block meta_og_title %}Accueil | Créabat Menuiseries{% endblock %}">
+		<meta property="og:description" content="{% block meta_og_description %}Spécialiste de la fourniture et pose de fermetures extérieures : fenêtres, portes, stores, volets, portails ... Jeune entreprise mais expérimentée dans ce domaine nous serions ravis de répondre à vos projets.{% endblock %}">
+		<meta property="og:image" content={% block meta_og_image %} "https://127.0.0.1:8000/assets/img/photos/creabat-duo.jpg" {% endblock %}>
 		<title>
-			{% block title %}Creabat Menuiseries
+			{% block title %}Créabat Menuiseries
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
@@ -16,8 +25,34 @@
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
+			<script>
+				document.documentElement.classList.add('js')
+			</script>
 			<script src="{{asset('/assets/js/main.js')}}" defer></script>
 		{% endblock %}
+		<!-- Matomo -->
+		<script>
+			var _paq = window._paq = window._paq || [];
+			/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function () {
+			var u = "//127.0.0.1:8000/matomo/";
+			_paq.push([
+			'setTrackerUrl',
+			u + 'matomo.php'
+			]);
+			_paq.push(['setSiteId', '1']);
+			var d = document,
+			g = d.createElement('script'),
+			s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+			})();
+		</script>
+		<!-- End Matomo Code -->
+
 	</head>
 
 	<body class="bg-slate-50 min-h-full ">
@@ -27,7 +62,8 @@
 		{% block body %}{% endblock %}
 
 		{% include "_partials/_footer.html.twig" %}
-		
+
+		<script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
 	</body>
 
 </html>

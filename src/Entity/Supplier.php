@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\SupplierRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
 
 #[ORM\Entity(repositoryClass: SupplierRepository::class)]
+#[UniqueEntity(fields:['company'], message:'Cette société existe déjà en base de donées.')]
 class Supplier
 {
     #[ORM\Id]
@@ -16,6 +19,8 @@ class Supplier
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
+    #[Assert\Length(min: 2, max: 100, minMessage:'Le nom de la société doit être faire 2 caractères minimum.', maxMessage:'Le nom de la société doit être faire 100 caractères maximum.')]
     private ?string $company = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]

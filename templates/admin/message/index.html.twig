@@ -1,20 +1,21 @@
 {% extends 'admin/admin-base.html.twig' %}
 
-{% block title %}Liste des messages{% endblock %}
+{% block title %}Liste des messages
+{% endblock %}
 
 {% block dashboardcontent %}
 
-<div class="container max-w-full  mx-auto px-4 sm:px-6 lg:px-8">
+	<div class="container max-w-full  mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="sm:flex sm:items-center">
 			<div class="sm:flex-auto">
 				<h1 class="text-base font-semibold leading-6 text-gray-900">Tous les messages</h1>
 				<p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title, email and role.</p>
 			</div>
 			{#<div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-				<a href="{{ path('admin_category_add') }}">
-					<button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ajouter un produit</button>
-				</a>
-			</div>#}
+							<a href="{{ path('admin_category_add') }}">
+								<button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ajouter un produit</button>
+							</a>
+						</div>#}
 		</div>
 		<div class="mt-8 flow-root">
 			<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -23,6 +24,9 @@
 						<table class="min-w-full divide-y divide-gray-300">
 							<thead class="bg-gray-50">
 								<tr>
+									<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+										Satut
+									</th>
 									<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Sujet</th>
 									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Contenu</th>
 									<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date</th>
@@ -36,18 +40,38 @@
 							</thead>
 							<tbody class="divide-y divide-gray-200 bg-white">
 								{% for message in messages %}
-									<tr>
+									<tr>											
+										<td class="whitespace-normal py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+												{% if message.isSeen == false %}
+													<svg
+														xmlns="http://www.w3.org/2000/svg" height="1em" viewbox="0 0 640 512">
+														<!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+														<path d="M64 112H448c8.8 0 16 7.2 16 16v22.1l-22.6 18.5C458.6 163 477 160 496 160c5.4 0 10.7 .2 16 .7V128c0-35.3-28.7-64-64-64H64C28.7 64 0 92.7 0 128V384c0 35.3 28.7 64 64 64H360.2c-11.8-14.3-21.4-30.5-28.2-48H64c-8.8 0-16-7.2-16-16V212.2L190 328.8c37.7 31 91.8 31.5 130.1 1.5c.9-29.2 8.9-56.5 22.4-80.4l-50.9 41.8c-20.7 17-50.4 17-71.1 0L48 150.1V128c0-8.8 7.2-16 16-16zM640 336a144 144 0 1 0 -288 0 144 144 0 1 0 288 0zm-76.7-43.3c6.2 6.2 6.2 16.4 0 22.6l-72 72c-6.2 6.2-16.4 6.2-22.6 0l-40-40c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L480 353.4l60.7-60.7c6.2-6.2 16.4-6.2 22.6 0z"/>
+													</svg>
+												{% else %}
+													<svg
+														xmlns="http://www.w3.org/2000/svg" height="1em" viewbox="0 0 512 512">
+														<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+														<path d="M255.4 48.2c.2-.1 .4-.2 .6-.2s.4 .1 .6 .2L460.6 194c2.1 1.5 3.4 3.9 3.4 6.5v13.6L291.5 355.7c-20.7 17-50.4 17-71.1 0L48 214.1V200.5c0-2.6 1.2-5 3.4-6.5L255.4 48.2zM48 276.2L190 392.8c38.4 31.5 93.7 31.5 132 0L464 276.2V456c0 4.4-3.6 8-8 8H56c-4.4 0-8-3.6-8-8V276.2zM256 0c-10.2 0-20.2 3.2-28.5 9.1L23.5 154.9C8.7 165.4 0 182.4 0 200.5V456c0 30.9 25.1 56 56 56H456c30.9 0 56-25.1 56-56V200.5c0-18.1-8.7-35.1-23.4-45.6L284.5 9.1C276.2 3.2 266.2 0 256 0z"/>
+													</svg>
+												{% endif %}
+											</td>
+											
+										</td>
 										<td class="whitespace-normal py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{message.subject}}</td>
 										<td class="whitespace-normal py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{message.content[:250] ~ '...'  }}</td>
-										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ message.sentAt|date('Y-m-d H:i:s') }}</td>										
+										<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ message.sentAt|date('Y-m-d H:i:s') }}</td>
+										<td>
+											<a href="{{ path('admin_message_read', { 'id': message.id }) }}" type="button" class="rounded bg-green-500 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Lire</a>
+													
+										</td>
 										<td class="relative whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
 											<a href="{{ path('admin_message_delete', { id: message.id }) }}" type="button" class="rounded bg-red-500 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Supprimer<span class="sr-only">, Lindsay Walton</span>
 											</a>
 										</td>
-										<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-											<a href="#" class="rounded bg-orange-500 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Modifier<span class="sr-only">, Lindsay Walton</span>
-											</a>
-										</td>
+										
+										</a>
+
 									</tr>
 								{% endfor %}
 
