@@ -14,8 +14,8 @@ class AdminMessageController extends AbstractController
 {   
     #[Route('/', name: 'index')]
     public function index(MessageRepository $messageRepository): Response
-    {   
-        $messages =  $messageRepository->findAll();
+    {
+        $messages =  $messageRepository->findBy([], ['id' => 'DESC']);
 
         return $this->render('admin/message/index.html.twig', [
             'messages' => $messages

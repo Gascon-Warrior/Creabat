@@ -20,15 +20,17 @@ module.exports = {
       aspectRatio: {
         '4/3': '4 / 3',
       },
+      backgroundImage: {
+        'hachure': 'repeating-linear-gradient(-45deg, #FFCC03, #FFCC03 4px, transparent 0px, transparent 12px)',
+      },
     },    
   },
-
   plugins: [   
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
     require('tw-elements/dist/plugin'),
     require('tailwindcss-animated'),
-    require('taos/plugin')   
+    require('taos/plugin'),
   ],
   safelist: [
     '!duration-[0ms]',

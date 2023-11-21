@@ -1,10 +1,58 @@
 {% extends 'admin/admin-base.html.twig' %}
 
 {% block title %}
-    Message
+	Message
 {% endblock %}
 
 {% block dashboardcontent %}
- {{ dump(message) }}
-<h1>couccou</h1>
+	<div class="w-3/5 mx-auto my-auto h-[80vh] flex flex-col justify-around bg-slate-200 rounded-lg p-6 overflow-scroll">
+
+		<h1 class="mx-auto font-bold">Nouveau message de
+			{{message.firstname}}
+			{{message.lastname}}</h1>
+
+
+		<div>
+			<h2 class="mb-6">
+				<span class="font-bold">Sujet:</span>
+				{{message.subject}}</h2>
+			<p class="flex flex-col mb-6">
+				<span class="font-bold">Message:</span>
+				{{message.content}}</p>
+			<p>
+				<span class="font-bold">Reçu le:</span>
+				{{message.sentAt|date('d-m-Y')}}
+			</p>
+		</div>
+		<div>
+			<h2 class="font-bold">Informations du contact:</h2>
+			<ul>
+				<li>
+					<span class="font-bold">Nom:</span>
+					{{message.lastname}}
+				</li>
+				<li>
+					<span class="font-bold">Prénom:</span>
+					{{message.firstname}}
+				</li>
+				<li class="group group-hover:cursor-pointer">
+					<span class="font-bold">Mail:</span>
+                    <a class="group-hover:font-black" href="mailto:{{message.email}}">{{message.email}}</a>					
+				</li>
+				<li>
+					<span class="font-bold">Téléphone:</span>
+					{{message.phone}}
+				</li>
+			</ul>           
+          
+		</div>
+		<div>
+			<div class="inline-flex flex-col float-right ">
+				<a href="mailto:{{message.email}}" type="button" class="rounded bg-green-500 px-2 py-1 mb-3 text-xs font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Répondre</a>
+				<a href="{{ path('admin_message_index') }}" type="button" class="rounded bg-red-500 px-2 py-1 float-right text-xs font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Retour à la liste</a>
+			<div>
+		</div>
+
+
+	</div>
 {% endblock %}

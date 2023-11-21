@@ -37,7 +37,8 @@ class MessageFormType extends AbstractType
                 ]
             ])
             ->add('phone', TelType::class, [
-                'label' => 'Numéro de téléphone (optionnel)'
+                'label' => 'Numéro de téléphone (optionnel)',
+                'required' => false
             ])
             ->add('subject', TypeTextType::class, [
                 'label' => 'Projet',

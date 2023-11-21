@@ -34,7 +34,6 @@ class Project
     private ?string $description = null;
 
     #[ORM\Column(options:['default' => 'CURRENT_TIMESTAMP'])]
-    #[Assert\DateTime]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Media::class, cascade:['persist'])]

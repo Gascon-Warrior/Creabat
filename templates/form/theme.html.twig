@@ -6,7 +6,7 @@
 {%- endblock form_row -%}
 
 {%- block widget_attributes -%}
-    {%- set widget_class = widget_class|default() -%}
+    {%- set widget_class = widget_class|default('rounded-md w-full') -%}
     {%- set widget_disabled_class = widget_disabled_class|default() -%}
     {%- set widget_errors_class = widget_errors_class|default('border-red-700') -%}
     {{- parent() -}}

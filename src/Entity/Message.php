@@ -26,7 +26,6 @@ class Message
     private ?string $content = null;
 
     #[ORM\Column]
-    #[Assert\DateTime()]
     private ?\DateTimeImmutable $sent_at = null;
 
     #[ORM\Column(options:['default' => false])]
@@ -39,7 +38,7 @@ class Message
 
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank(message:'Veuillez renseigner ce champ.')]
-    #[Assert\Length(min: 2, max: 100,  message:'Le nom doit faire entre 2 et 100 caractères.')]
+    #[Assert\Length(min: 2, max: 100,  minMessage:'Le nom doit faire minimum 2 caractères.', maxMessage:'Le nom doit faire maximum 100 caractères.')]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 280)]
