@@ -22,7 +22,10 @@ class ProjectFormType extends AbstractType
             ])            
             ->add('photo', MediaFormType::class, options: [
                 'mapped' => false,
-                'required' => true
+                'required' => true,
+                'attr'     => [
+                    'multiple' => 'multiple'
+                ]
             ])
         ;  
        

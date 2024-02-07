@@ -39,7 +39,7 @@ class AdminProjectController extends AbstractController
         $projectForm->handleRequest($request);
 
         if ($projectForm->isSubmitted() && $projectForm->isValid()) {
-            //On récupere les images
+            //On récupère les images
             $mediaForm = $projectForm->get('photo');
             $images = $mediaForm->get('picture')->getData();
            
@@ -48,7 +48,7 @@ class AdminProjectController extends AbstractController
                 $caption = $mediaForm->get('caption')->getData();
                 $alt = $mediaForm->get('alt')->getData();
 
-                //ON défini le dossier de destination 
+                //On défini le dossier de destination
                 $folder = 'projets';
 
                 //On appelle le service d'ajout

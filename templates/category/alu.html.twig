@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_description %}Explorez notre gamme de produits soigneusement sélectionnés auprès de nos partenaires fournisseurs de confiance. Nous vous proposons des menuiseries, volets, portails, portes, fenêtres et bien d'autres solutions d'excellente qualité, que notre équipe expérimentée se fera un plaisir de poser selon vos préférences et besoins spécifiques.
+{% endblock %}
+
+
+{% block meta_og_title %}
+	Menuiseries alu
+			| Créabat Menuiseries
+{% endblock %}
+
+{% block meta_og_description %}Explorez notre gamme de produits soigneusement sélectionnés auprès de nos partenaires fournisseurs de confiance. Nous vous proposons des menuiseries, volets, portails, portes, fenêtres et bien d'autres solutions d'excellente qualité, que notre équipe expérimentée se fera un plaisir de poser selon vos préférences et besoins spécifiques.
+{% endblock %}
+
+{% block meta_og_image %}{% endblock %}
+
+{% block title %}
+	Menuiseries alu
+			| Créabat Menuiseries
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}	
+	<script src="{{asset('/assets/js/carousel-products.js')}}" defer></script>
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="relative">
+		<img class="w-full h-[180px] object-cover xl:h-[350px] 3xl:h-[450px] " src="{{ asset('assets/img/photos/photo-bandeau-alu.webp') }}" alt="Image de présentation de la catégorie de produit">
+		<div class="animate-flip-down absolute w-[60%] left-0 bottom-[-20px] xl:bottom-[-30px] 3xl:bottom-[-70px]  rounded-r-lg bg-customYellow py-2 px-2 3xl:py-8 3xl:px-8">
+			<h1 class="py-[0.8rem] whitespace-nowrap animate-fade-down animate-duration-[800ms] animate-ease-in-out animate-delay-[500ms] mr-[90px] text-[1.1rem] text-end font-black tracking-wide  text-gray-900 md:text-[1.8rem] md:text-3xl lg:text-4xl uppercase">Menuiseries alu</h1>
+		</div>
+	</div>
+
+	<div class="w-full mx-auto px-4 pb-48 md:w-10/12 lg:px-8 lg:mb-[120px] xl:w-10/12 xl:mt-36 3xl:mt-56 3xl:w-4/6 overflow-hidden">
+		<div>
+
+			<div class="mt-16 md:gap-4 md:align-middle xl:gap-12 flex flex-col xl:flex-row">
+				<div class="flex flex-col justify-around order-last mt-2 delay-[300ms] duration-[800ms] taos:translate-x-[200px] taos:opacity-0 md:mt-0 xl:w-1/2" data-taos-offset="200">
+
+					<h2 class="text-lg font-semibold leading-6 text-gray-900 whitespace-nowrap hidden group-hover:text-gray-600 3xl:text-2xl uppercase lg:visible lg:order-2">Menuiseries alu</h2>
+
+
+					<p class="mt-3 text-sm leading-6 text-gray-600 text-left md:mb-0.5 xl:text-base 3xl:text-xl">Découvrez la gamme Novaltuce de fenêtres et baies coulissantes en aluminium, conçues pour inonder votre intérieur de lumière grâce à leurs vastes surfaces vitrées. Ces fenêtres offrent des avantages indéniables, notamment des performances thermiques exceptionnelles grâce à un bouclier thermique en PVC et un traitement d'étanchéité à l'air spécifique. Vous pouvez personnaliser l'intérieur et l'extérieur avec un choix de 250 couleurs, et leur design fin et élégant s'intègre parfaitement à tous les décors. Adaptées aux grandes surfaces vitrées et aux configurations complexes, elles sont fabriquées sur mesure dans nos ateliers en Anjou (49) pour répondre précisément à vos besoins. Optez pour la luminosité, l'élégance et le confort avec les fenêtres en aluminium Novaltuce.</p>
+
+					<a href="{{ path('contact_message') }}" class="w-fit inline-block rounded-md bg-customYellow px-3.5 py-2.5 mt-6 text-sm font-semibold text-black shadow-sm hover:bg-customYellowHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 3xl:px-5 3xl:py-4">Demander un devis</a>
+				</div>
+
+				<div class="relative h-[250px] rounded-lg xl:w-1/2 md:h-[400px] 3xl:h-[550px] 3xl:w-[800px] order-first lg:order-1 delay-[300ms] duration-[800ms] taos:translate-y-[-200px] taos:opacity-0" data-taos-offset="500">
+					<img id="focused-image" class="w-full absolute z-40 h-[250px] object-cover rounded-lg md:h-[400px] 3xl:h-[550px] 3xl:w-[800px]" src="{{ asset('assets/img/photos/porte-entree-alu.webp') }}" alt="Photo d'illustration pour la catégorie menuiseries alu">
+
+					<div class="flex gap-3 mt-10 md:mt-20 xl:mt-36 3xl:mt-56 absolute -bottom-40">
+						<div>
+							<img class="thumbnail border-caroussel rounded-md cursor-zoom-in" src="{{ asset('assets/img/photos/porte-entree-alu.webp') }}" alt="">
+						</div>
+						<div>
+							<img class="thumbnail rounded-md cursor-zoom-in" src="{{ asset('assets/img/photos/canvas.webp') }}" alt="">
+						</div>
+						<div>
+							<img class="thumbnail rounded-md cursor-zoom-in" src="{{ asset('assets/img/photos/menuiseries-alu.webp') }}" alt="">
+						</div>
+						<div>
+							<img class="thumbnail rounded-md cursor-zoom-in" src="{{ asset('assets/img/photos/fenetre-alu-noire.webp') }}" alt="">
+						</div>
+					</div>
+
+
+					<div class="absolute z-10 w-full h-full rounded-lg bg-hachure hidden md:block md:left-[-10px] md:top-[-10px] xl:left-[-25px] xl:top-[-25px] right-[15px]"></div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+{% endblock %}

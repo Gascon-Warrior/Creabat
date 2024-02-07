@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 class MediaFormType extends AbstractType
 {
    
@@ -21,11 +21,11 @@ class MediaFormType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
-            ->add('alt', options: [
+            ->add('alt', TextType::class, options: [
                 'label' => 'Texte alternatif',                           
                 'required' => false
             ])
-            ->add('caption', options: [
+            ->add('caption', TextType::class, options: [
                 'label' => 'Légende',
                 'required' => false               
             ]);

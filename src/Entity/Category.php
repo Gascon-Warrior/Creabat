@@ -24,7 +24,7 @@ class Category
 
     #[ORM\Column(length: 100)]    
     #[Assert\NotBlank(message: 'Veuillez renseigner ce champ.')]
-    #[Assert\Length(min: 4, max: 100, minMessage:'La catégorie doit faire un minimu 4 caractères.', maxMessage:'La catégorie doit faire un maximu 100 caractères.')]
+    #[Assert\Length(min: 4, max: 100, minMessage:'La catégorie doit faire un minimu 4 caractères.', maxMessage:'La catégorie doit faire un maximum 100 caractères.')]
     private ?string $name = null;
 
     #[ORM\OneToOne(inversedBy: 'category', cascade: ['persist', 'remove'])]

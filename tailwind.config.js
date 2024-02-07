@@ -21,8 +21,11 @@ module.exports = {
         '4/3': '4 / 3',
       },
       backgroundImage: {
-        'hachure': 'repeating-linear-gradient(-45deg, #FFCC03, #FFCC03 4px, transparent 0px, transparent 12px)',
+        'hachure': 'repeating-linear-gradient(-45deg, #FFCC03, #FFCC03 2px, transparent 0px, transparent 22px)',
       },
+      zIndex: {
+        '999': '999',
+      }
     },    
   },
   plugins: [   

@@ -14,7 +14,7 @@ class PictureService
     {
         $this->params = $params;
     }
-
+    // Converti, recadre et classe les photos.
     public function add(UploadedFile $picture, ?string $folder = '', ?int $width = 250, ?int $height = 250)
     {
         // On donne un nouveau nom à l'image
